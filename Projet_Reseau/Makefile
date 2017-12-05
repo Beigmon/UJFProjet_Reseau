@@ -2,18 +2,20 @@ CC = gcc -Wall -c
 CO = gcc -Wall -o
 SERV = serveur
 CLI = client
-RESC = /sources/Reseau.c
-RESH = /headers/Reseau.h
-OBJS = serveur.o Client.o Reseau_client.o Reseau_serveur.o
+SOURCE = /sources
+HEADER = /headers
+RESC = $(SOURCE)/Reseau.c
+RESH = $(HEADER)/Reseau.h
+OBJS = *.o
 EXCCLI = /bin/Client
 EXCSERV = /bin/Serveur
-OBJSSERV = $(SERV)/Serveur.c  $(SERV)$(RESH)
-OBJSCLI = $(CLI)/Client.c $(CLI)$(RESH)
+OBJSSERV = $(SERV)/Serveur.c $(SERV)$(SOURCE)/*.c  $(SERV)$(RESH)
+OBJSCLI = $(CLI)/Client.c $(CLI)$(SOURCE)/*.c $(CLI)$(RESH)
 
 all : Client Serveur
- 
-Serveur : Serveur.o Reseau_serveur.o
-	$(CO) $(SERV)$(EXCSERV) Serveur.o Reseau.o
+
+Serveur : Serveur.o Reseau_serveur.o Trains.o
+	$(CO) $(SERV)$(EXCSERV) Serveur.o Reseau.o Trains.o
 
 Client : Client.o Reseau_client.o
 	$(CO) $(CLI)$(EXCCLI) Client.o Reseau.o
@@ -30,5 +32,8 @@ Reseau_client.o : $(CLI)$(RESC) $(CLI)$(RESH)
 Reseau_serveur.o : $(SERV)$(RESC) $(SERV)$(RESH)
 	$(CC) $(SERV)$(RESC)
 
+Trains.o : $(SERV)$(SOURCE)/Trains.c $(SERV)$(HEADER)/Trains.h
+	$(CC) $(SERV)$(SOURCE)/Trains.c
+
 clean :
-	rm -f $(OBJS) $(EXC)
+	rm -f $(OBJS) $(SERV)$(SOURCE)/$(OBJS) $(CLI)$(SOURCE)/$(OBJS) $(CLI)$(EXCCLI) $(SERV)$(EXCSERV)
