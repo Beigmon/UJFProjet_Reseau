@@ -22,6 +22,7 @@
  */
 
 #include "headers/Reseau.h"
+#include "headers/Trains.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -49,31 +50,88 @@ int socket(int domaine, int type, int protocole);
 int bind(int descripteur, const struct sockaddr *p, int len);+
 
 **/
-typedef enum { REDUC, SUPPL } Action_prix;
-
-struct trains
-{
-	int num_train;
-	char ville_depart[MAX];
-	char ville_arrivee[MAX];
-	char horaire_depart[MAX];
-	char horaire_arrivee[MAX];
-	double prix_usuel;
-	Action_prix evenement;	 
-} ;
-
 
 int main(int argc, char **argv)
 {
-	//char filename[MAX] = argv[2];
-	//FILE *fichier_train = fopen(filename, "r");
+	int nbLignes = nb_line_file(argv[2]);
+	printf("nbLignes du document : %d\n", nbLignes);
+	//struct trains donnees[nbLignes];
+	struct trains *donnees = malloc(nbLignes * sizeof(struct trains));
+	
+	FILE *fichierTrain = fopen(argv[2], "r");
+	int currentLine;
+	for(currentLine = 0; currentLine<nbLignes; currentLine++)
+	{
+		printf("Ligne actuel : %d\n", currentLine);
+		txtVersStructure(fichierTrain, &donnees[currentLine]);
+		printf("num_train : %d, ville_depart : %s, ville_arrivee : %s, horaire_depart : %s, horaire_arrivee : %s, prix_usuel : %.2f \n\n",
+			donnees[currentLine].num_train, 
+			donnees[currentLine].ville_depart, 
+			donnees[currentLine].ville_arrivee, 
+			donnees[currentLine].horaire_depart, 
+			donnees[currentLine].horaire_arrivee, 
+			donnees[currentLine].prix_usuel);
+	}
+	fclose(fichierTrain);
 	
 	int noport = atoi(argv[1]);
-	int serv_sock;
-	char message[MAX];
-	int nb_lu;
+	int numSocket = socketServer(noport, TCP);
 	pid_t fils;
-	int p;
+	while(1)
+	{
+		int serv_sock = accept(numSocket, NULL, NULL);
+		if(serv_sock<0)
+		{
+			printf("Il y a eu une erreur sur accept");
+		}
+		fils = fork();
+		switch(fils)
+		{
+			case 0:
+			{
+				char message[MAX];
+				sprintf(message,"Bonjour, bienvenue sur le serveur.\n");
+				write(serv_sock, message, strlen(message));
+				
+				/*int nb_lu = read(serv_sock, message, MAX-1);
+				
+				//FAIRE LA DECOMPOSITION DE LA CHAINE
+				int option = atoi(message);
+				
+				//DEMANDE DE CONSULTATION TRAIN
+				if(option==1)
+				{
+					//CHOIX DU MODE DE SAISIE
+					nb_lu = read( serv_sock, message, MAX-1);
+					
+					switch(option)
+					{
+						case 1:
+							
+							break;
+						case 2:
+							
+							break;
+						case 3:
+							
+							break;
+					}		
+				}
+				
+				message[nb_lu+1] = 0;
+				printf("%s", message);
+				write( serv_sock, message, nb_lu);*/
+				break;
+			}
+			default:
+				break;
+		}
+		
+	}
+	close(numSocket);
+	return 0;
+}
+
 	/*
 	struct sockaddr_in s;
 	int p = socket(AF_INET, SOCK_STREAM, 0);
@@ -89,73 +147,4 @@ int main(int argc, char **argv)
 	{
 		printf("Il y a eu un erreur listen");
 	}*/
-	p = socketServer(noport, TCP);
-	while(1)
-	{
-		serv_sock = accept(p, NULL, NULL);
-		if(serv_sock<0)
-		{
-			printf("Il y a eu un erreur accept");
-		}
-		fils = fork();
-		switch(fils)
-		{
-			case 0:
-			{
-				sprintf(message,"Bonjour, bienvenue sur le serveur.\nSouhaitez-vous consulter les trains? (Oui = 1/ Non = 0)");
-				write(serv_sock, message, strlen(message));
-				nb_lu = read( serv_sock, message, MAX-1);
-				
-				//DEMANDE DE CONSULTATION TRAIN
-				if(strcmp(message, "1"))
-				{
-					//CHOIX DU MODE DE SAISIE
-					sprintf(message,"Très bien. Quels modes voulez-vous utiliser ?\n\t1.Par horaire de départ\n\t2.Par tranche d'horaire\n\t3.Sans horaires\n");
-					write(serv_sock, message, strlen(message));
-					
-					nb_lu = read( serv_sock, message, MAX-1);
-					switch(atoi(message))
-					{
-						case 1:
-							//VILLE DE DÉPART
-							sprintf(message,"Saisissez une ville de départ :");
-							write(serv_sock, message, strlen(message));
-							nb_lu = read( serv_sock, message, MAX-1);
-							//VILLE D'ARRIVÉE
-							sprintf(message,"Saisissez une ville d'arrivée");
-							write(serv_sock, message, strlen(message));
-							nb_lu = read( serv_sock, message, MAX-1);
-							//HORAIRE DE DÉPART
-							sprintf(message,"Saisissez un horaire de départ");
-							write(serv_sock, message, strlen(message));
-							nb_lu = read( serv_sock, message, MAX-1);
-							break;
-						case 2:
-							sprintf(message,"Saisissez une ville de départ :");
-							write(serv_sock, message, strlen(message));
-							break;
-						case 3:
-							sprintf(message,"Saisissez une ville de départ :");
-							write(serv_sock, message, strlen(message));
-							sprintf(message,"Saisissez une ville d'arrivée :");
-							write(serv_sock, message, strlen(message));
-							break;
-					}		
-				
-					
-				}
-				message[nb_lu+1] = 0;
-				printf("%s", message);
-				write( serv_sock, message, nb_lu);
-				break;
-			}
-			default:
-				break;
-		}
-		
-	}
-	close( p);
-	return 0;
-}
-
 
