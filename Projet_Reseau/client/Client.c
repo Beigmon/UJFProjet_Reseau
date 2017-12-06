@@ -164,15 +164,17 @@ int main(int argc, char **argv)
 			
 			//AJOUT DU MODE DE TRI A LA REQUETE
 			strcat(construct_requete, ";");
-			
 			switch(atoi(choix_tri))
 			{	
+				//TRI PAR DURÉE DE TRAJET
 				case 1:
 					strcat(construct_requete, "1");
 					break;
+				//TRI PAR PRIX
 				case 2:
 					strcat(construct_requete, "2");
 					break;
+				//AUCUN TRI
 				case 3:
 					strcat(construct_requete, "3");
 					break;
