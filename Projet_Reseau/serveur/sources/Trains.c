@@ -181,7 +181,7 @@ void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * ho
  * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
  * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
  */
-void getAllTrainsWithStartAndFinish(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+void getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
 {
 	int index, indexTab = 0;
 	
@@ -263,4 +263,87 @@ void calculePrix(struct trains *train)
 	}
 	//VIDE
 	train->prix_usuel = prix;
+}
+
+//FONCTION DE COMPARAISON PAR PRIX CROISSANT
+int compParPrix(const void *v1, const void *v2)
+{
+    //RES = 0 SI LES PRIX SONT EGAUX
+    int res = 0;
+    //TYPAGE DE V1 ET V2 DANS T1 ET T2
+    struct trains *t1 = (struct trains *)v1;
+    struct trains *t2     = (struct trains *)v2;
+
+    //RÉCUPÉRATION DES PRIX (DÉJÀ CALCULÉS)
+    double prix1 = t1->prix_usuel;
+    double prix2 = t2->prix_usuel;
+
+    //COMPARAISON DES PRIX
+    if(prix1 > prix2)
+    {
+        res = 1;
+    }
+    if(prix1 < prix2)
+    {
+        res = -1;
+    }
+    return res;
+}
+
+//FONCTION DE COMPARAISON PAR TEMPS CROISSANT
+int compParTemps(const void *v1, const void *v2)
+{
+    //RES = 0 SI LES TEMPS SONT EGAUX
+    int res = 0;
+
+    //TYPAGE DE V1 ET V2 DANS T1 ET T2
+    struct trains *t1 = (struct trains *)v1;
+    struct trains *t2 = (struct trains *)v2;
+
+    //VARIABLES DE RÉCUPERATION DES TEMPS
+    int tempsDepart1;
+    int tempsArrivee1;
+    int tempsDepart2;
+    int tempsArrivee2;
+
+    //AFFECTATION DES DONNÉES AUX VARIABLES
+    getTemps(t1->horaire_depart, &tempsDepart1);
+    getTemps(t1->horaire_arrivee, &tempsArrivee1);
+    getTemps(t2->horaire_depart, &tempsDepart2);
+    getTemps(t2->horaire_arrivee, &tempsArrivee2);
+
+    //COMPARAISON DES TEMPS
+    if((tempsArrivee1 - tempsDepart1) > (tempsArrivee2 - tempsDepart2)) // ex: 750-650(100) > 850-780 (70)
+    {
+        res = 1;
+    }
+    if((tempsArrivee1 - tempsDepart1) < (tempsArrivee2 - tempsDepart2)) // ex: 850-780 (70) < 750-650(100)
+    {
+        res = -1;
+    }
+    return res;
+}
+
+//TRI UN TABLEAU DE TRAIN (*tabTrains) EN FONCTION DU PARAMÈTRE "mode" (prix/temps)
+void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
+{
+    int index;
+    //TRI EN PAR PRIX CROISSANT
+    if(strcmp(mode, "prix") == 0)
+    {
+        //CALCULE LE PRIX DES TRAINS 
+        for(index = 0; index<tailleTableau;index++) 
+        {
+            calculePrix(&tabTrains[index]);
+        }
+
+        //TRI LE TABLEAU DE TRAINS 
+        qsort (tabTrains, tailleTableau,sizeof(struct trains), compParPrix);
+    }
+    //TRI EN PAR DUREE CROISSANTE
+    if(strcmp(mode, "temps") == 0)
+    {
+        //TRI LE TABLEAU DE TRAINS 
+        qsort (tabTrains, tailleTableau,sizeof(struct trains), compParTemps);
+    }
 }

@@ -61,11 +61,17 @@ PUBLIC void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeA
 
 PUBLIC void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
 
-PUBLIC void getAllTrainsWithStartAndFinish(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
+PUBLIC void getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
 
 PUBLIC void structureVersTxt(struct trains train, char* txt);
 
 PUBLIC void calculePrix(struct trains *train);
+
+PUBLIC int compParPrix(const void *v1, const void *v2);
+
+PUBLIC int compParTemps(const void *v1, const void *v2);
+
+PUBLIC void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode);
 
 #undef PUBLIC
 #endif /* #ifndef TRAIN_H */
