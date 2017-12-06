@@ -94,47 +94,67 @@ int main(int argc, char **argv)
 				strcpy(HoraireFinRecu,strtok(NULL, ";"));
 				strcpy(choixTri,strtok(NULL, ";"));
 				
+				struct trains *ListTrains =  malloc(nbLignes * sizeof(struct trains));	
 				//IDENTIFICATION DE LA CHAINE RECU
 				if(atoi(HoraireFinRecu) == 0)
 				{
 					//IDENTIFICATION DE LA CHAINE RECU
 					if(atoi(HoraireDebutRecu) == 0)
 					{
-						//ON EST DANS LA TROISIEME POSSIBILITÉ (Ville de départ et d'arrivée renseignées)
-						sprintf(resultat,"3333333333\n");		
+						//ON EST DANS LA TROISIEME POSSIBILITÉ (Ville de départ et d'arrivée renseignées)															
+						getAllTrainsWithStartAndArrival(villeDepartRecu, villeArriveRecu, ListTrains, donnees, nbLignes);
 					}
 					else
 					{
-						//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)
-						struct trains train;
-																								
-						getTrain(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, &train, donnees, nbLignes);
-						
-						structureVersTxt(train, resultat);					
-						
+						//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)														
+						getOneTrainWithStartArrivalAndTime(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, ListTrains, donnees, nbLignes);
 					}
 				}
 				else
 				{
-					//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)
-					sprintf(resultat,"22222222222222\n");
+					//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)																
+					getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
 				}	
-				
+				printf("choixTrie : %s\n", choixTri);
+				int chx = atoi(choixTri);
+				printf("choixTrie : %d\n", chx);
+				if (chx == 1)
+				{
+					printf("cas1\n");
+					trierTrains(ListTrains, 4, "temps"); //IL FAUT CONNAITRE LA TAILLE DU TABLEAU !!!!!!!!!!!!!!!!
+				}
+				else
+				{
+					printf("cas2\n");
+					trierTrains(ListTrains, 4, "prix"); //IL FAUT CONNAITRE LA TAILLE DU TABLEAU !!!!!!!!!!!!!!!!
+				}
 				//LE TRI
-				switch(atoi(choixTri))
+				/*switch(chx)
 				{
 					//TRI PAR DURÉE DE TRAJET
 					case 1:
-						//////////////A COMPLETER//////////////
+						printf("cas1");
+						trierTrains(ListTrains, nbLignes, "temps");
 						break;
 					//TRI PAR PRIX
 					case 2:
-						//////////////A COMPLETER//////////////
+						printf("cas2");
+						trierTrains(ListTrains, nbLignes, "prix");
 						break;
 					//AUCUN TRI
-					case 3:
+					default:
+						printf("zzz");
 						break;
-				}				
+				}*/
+								
+				int index = 0;
+				char * trainSousText = malloc(MAX * sizeof(char));		
+				while(ListTrains[index].num_train != 0)
+				{
+					structureVersTxt(ListTrains[index], trainSousText);
+					strcat(resultat, trainSousText);
+					index++;
+				}
 				
 				write(serv_sock, resultat, strlen(resultat));
 				

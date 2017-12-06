@@ -293,6 +293,7 @@ int compParPrix(const void *v1, const void *v2)
 //FONCTION DE COMPARAISON PAR TEMPS CROISSANT
 int compParTemps(const void *v1, const void *v2)
 {
+	printf("tempsCMP\n");
     //RES = 0 SI LES TEMPS SONT EGAUX
     int res = 0;
 
@@ -331,6 +332,7 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
     //TRI EN PAR PRIX CROISSANT
     if(strcmp(mode, "prix") == 0)
     {
+		printf("prix\n");
         //CALCULE LE PRIX DES TRAINS 
         for(index = 0; index<tailleTableau;index++) 
         {
@@ -338,12 +340,13 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
         }
 
         //TRI LE TABLEAU DE TRAINS 
-        qsort (tabTrains, tailleTableau,sizeof(struct trains), compParPrix);
+        qsort(tabTrains, tailleTableau,sizeof(struct trains), compParPrix);
     }
     //TRI EN PAR DUREE CROISSANTE
-    if(strcmp(mode, "temps") == 0)
+    else//else if(strcmp(mode, "temps") == 0)
     {
+		printf("temps\n");
         //TRI LE TABLEAU DE TRAINS 
-        qsort (tabTrains, tailleTableau,sizeof(struct trains), compParTemps);
+        qsort(tabTrains, tailleTableau,sizeof(struct trains), compParTemps);
     }
 }
