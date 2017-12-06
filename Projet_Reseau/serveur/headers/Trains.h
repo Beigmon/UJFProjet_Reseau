@@ -44,5 +44,7 @@ PUBLIC void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepar
 
 PUBLIC void structureVersTxt(struct trains train, char* txt);
 
+PUBLIC void calculePrix(struct trains *train);
+
 #undef PUBLIC
 #endif /* #ifndef TRAIN_H */

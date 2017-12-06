@@ -158,3 +158,19 @@ void structureVersTxt(struct trains train, char* txt)
 	strcpy(txt, construct_txt); 
 }
 
+void calculePrix(struct trains *train)
+{
+	//REDUC
+	double prix = train->prix_usuel;
+	if(train->evenement == 0) 
+	{
+		prix = prix - (prix * 0.2);
+	}
+	//SUPPL
+	if(train->evenement == 1)
+	{
+		prix = prix + (prix * 0.1);
+	}
+	//VIDE
+	train->prix_usuel = prix;
+}
