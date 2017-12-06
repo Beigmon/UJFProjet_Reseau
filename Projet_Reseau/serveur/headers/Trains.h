@@ -40,7 +40,9 @@ PUBLIC void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains);
 
 PUBLIC void getTemps(char * temps, int * res);
 
-PUBLIC void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains);
+PUBLIC void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains, int nbLignes);
+
+PUBLIC void structureVersTxt(struct trains train, char* txt);
 
 #undef PUBLIC
 #endif /* #ifndef TRAIN_H */

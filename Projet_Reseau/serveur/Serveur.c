@@ -94,7 +94,13 @@ int main(int argc, char **argv)
 				write(serv_sock, message, strlen(message));
 				
 				//ON RECOIT LA CHAINE DU CLIENT
-				int nb_lu = read(serv_sock, message, MAX);
+				int nbLus = read(serv_sock, message, MAX);
+				
+				//SI ON LIT RIEN
+				if(nbLus == -1)
+				{
+					return -1;
+				}	
 				
 				//DECLARATION DES VARIABLES DE STOCKAGE
 				char villeDepartRecu[MAX];
@@ -123,25 +129,10 @@ int main(int argc, char **argv)
 					{
 						//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)
 						struct trains train;
-						int index;
-																		
-						getTrain(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, &train, donnees);
+																								
+						getTrain(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, &train, donnees, nbLignes);
 						
-						printf("COTE LUMIERE\n");
-						printf("%d\n", train.num_train);
-						printf("%s\n", train.ville_depart);
-						printf("%s\n", train.ville_arrivee);
-						printf("%s\n", train.horaire_depart);
-						printf("%s\n", train.horaire_arrivee);
-						
-						strcat(resultat, "Le train");
-						strcat(resultat, "partant de ");
-						strcat(resultat, train.ville_depart);
-						strcat(resultat, "et arrivant à ");
-						strcat(resultat, train.ville_arrivee);
-						strcat(resultat, "partira à ");
-						strcat(resultat, train.horaire_depart);
-						
+						structureVersTxt(train, resultat);					
 						
 					}
 				}
@@ -167,7 +158,7 @@ int main(int argc, char **argv)
 						break;
 				}				
 				
-				write(serv_sock, resultat, nb_lu);
+				write(serv_sock, resultat, strlen(resultat));
 				
 				break;
 			}

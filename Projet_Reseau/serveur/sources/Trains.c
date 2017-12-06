@@ -95,13 +95,11 @@ void getTemps(char * temps, int * res)
 	*res = (heure*100+minute);
 }
 
-void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains)
+void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains, int nbLignes)
 {
 	int index, horaire = 2360;  // Valeur Max 23:59 -> 2359
- 	//int length = (sizeof(tabTrains[0])*sizeof(tabTrains))/sizeof(struct trains);
- 	//printf("%d\n", length);
 	
-	for(index = 0; index < 21; index++)
+	for(index = 0; index < nbLignes; index++)
 	{
 		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
 		{
@@ -123,4 +121,40 @@ void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, stru
 	}
 }
 
+void structureVersTxt(struct trains train, char* txt) 
+{
+	char construct_txt[MAX]; 
+	//char txt[MAX]; 
+	char num[MAX]; 
+	char prix[MAX];
+	
+	strcpy(txt, ""); 
+	strcpy(construct_txt, ""); 
+	
+	strcpy(num, ""); 
+	sprintf(num, "%d", train.num_train);
+	
+	strcpy(prix, "");
+	sprintf(prix, "%.2f", train.prix_usuel);
+
+	strcat(construct_txt, num);
+	strcat(construct_txt, ";");
+	
+	strcat(construct_txt, train.ville_depart);
+	strcat(construct_txt, ";");
+	
+	strcat(construct_txt, train.ville_arrivee);
+	strcat(construct_txt, ";");
+	
+	strcat(construct_txt, train.horaire_depart);
+	strcat(construct_txt, ";");
+	
+	strcat(construct_txt, train.horaire_arrivee);
+	strcat(construct_txt, ";");
+	
+	strcat(construct_txt, prix);
+	strcat(construct_txt, "\n");
+	
+	strcpy(txt, construct_txt); 
+}
 
