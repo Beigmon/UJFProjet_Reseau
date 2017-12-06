@@ -117,7 +117,7 @@ void getTemps(char * temps, int * res)
  * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
  * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
  */
-void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains, int nbLignes)
+void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee,char * horaireDebut, struct trains *train, struct trains *tabTrains, int nbLignes)
 {
 	int index, horaire = 2360;  // Valeur Max 23:59 -> 2359
 	
@@ -129,7 +129,7 @@ void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, stru
 			{
 				int bestFoundH, currentH;
 				getTemps(tabTrains[index].horaire_depart, &bestFoundH);
-				getTemps(horaireDepart, &currentH);
+				getTemps(horaireDebut, &currentH);
 				if (bestFoundH >= currentH)
 				{
 					if(horaire > bestFoundH)
@@ -138,6 +138,60 @@ void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, stru
 						*train = tabTrains[index];
 					}
 				}
+			}
+		}
+	}
+}
+
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
+void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+{
+	int index, indexTab = 0;
+	int hDeb; getTemps(horaireDebut, &hDeb);
+	int hFin; getTemps(horaireFin, &hFin);
+	
+	for(index = 0; index < nbLignes; index++)
+	{
+		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
+		{
+			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0) 
+			{
+				int currentDeb;
+				getTemps(tabTrains[index].horaire_depart, &currentDeb);
+								
+				if (currentDeb>=hDeb && currentDeb<=hFin)
+				{
+					ListTrains[indexTab++] = tabTrains[index];
+				}
+			}
+		}
+	}
+}
+
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
+void getAllTrainsWithStartAndFinish(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+{
+	int index, indexTab = 0;
+	
+	for(index = 0; index < nbLignes; index++)
+	{
+		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
+		{
+			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0) 
+			{			
+				ListTrains[indexTab++] = tabTrains[index];			
 			}
 		}
 	}
