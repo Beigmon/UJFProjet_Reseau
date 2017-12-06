@@ -181,9 +181,9 @@ int main(int argc, char **argv)
 					break;
 			}
 			
+			
 			//LA REQUETE EST STOCKÉE DANS LA VARIABLE "REQUETE"
 			strcpy(requete,construct_requete);
-			
 			
 			//ENVOIE DE LA REQUETE
 			write(numSocket, requete, strlen(requete));

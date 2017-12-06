@@ -38,5 +38,9 @@ PUBLIC void filelinetotxt(char * ligne, FILE* file);
 
 PUBLIC void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains);
 
+PUBLIC void getTemps(char * temps, int * res);
+
+PUBLIC void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains);
+
 #undef PUBLIC
 #endif /* #ifndef TRAIN_H */

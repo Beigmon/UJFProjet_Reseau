@@ -41,7 +41,7 @@ void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 {
 	char ligne[VALUE];
 	filelinetotxt(ligne, fichierTrain);
-	printf("LIGNE : %s\n", ligne);
+	//printf("LIGNE : %s\n", ligne);
 	const char * REDUC = ACTION_PRIX_STRING[0];
 	const char * SUPPL = ACTION_PRIX_STRING[1];
 
@@ -84,3 +84,43 @@ int nb_line_file(char * filename)
 	fclose(fichier_train);
 	return nb_line;
 }
+
+void getTemps(char * temps, int * res)
+{
+	char *t = temps;
+	char * pEnd;
+	int heure = strtol(t, &pEnd, 10);
+	int minute = strtol (pEnd+1,&pEnd,10);
+	
+	*res = (heure*100+minute);
+}
+
+void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains)
+{
+	int index, horaire = 2360;  // Valeur Max 23:59 -> 2359
+ 	//int length = (sizeof(tabTrains[0])*sizeof(tabTrains))/sizeof(struct trains);
+ 	//printf("%d\n", length);
+	
+	for(index = 0; index < 21; index++)
+	{
+		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
+		{
+			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0) 
+			{
+				int bestFoundH, currentH;
+				getTemps(tabTrains[index].horaire_depart, &bestFoundH);
+				getTemps(horaireDepart, &currentH);
+				if (bestFoundH >= currentH)
+				{
+					if(horaire > bestFoundH)
+					{
+						getTemps(tabTrains[index].horaire_depart, &horaire);
+						*train = tabTrains[index];
+					}
+				}
+			}
+		}
+	}
+}
+
+

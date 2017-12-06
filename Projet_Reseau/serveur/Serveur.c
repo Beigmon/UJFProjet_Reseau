@@ -60,70 +60,121 @@ int main(int argc, char **argv)
 	
 	FILE *fichierTrain = fopen(argv[2], "r");
 	int currentLine;
-	for(currentLine = 0; currentLine<nbLignes; currentLine++)
+	for(currentLine = 0; currentLine < nbLignes; currentLine++)
 	{
-		printf("Ligne actuel : %d\n", currentLine);
+		//printf("Ligne actuel : %d\n", currentLine);
 		txtVersStructure(fichierTrain, &donnees[currentLine]);
-		printf("num_train : %d, ville_depart : %s, ville_arrivee : %s, horaire_depart : %s, horaire_arrivee : %s, prix_usuel : %.2f \n\n",
-			donnees[currentLine].num_train, 
-			donnees[currentLine].ville_depart, 
-			donnees[currentLine].ville_arrivee, 
-			donnees[currentLine].horaire_depart, 
-			donnees[currentLine].horaire_arrivee, 
-			donnees[currentLine].prix_usuel);
+		//printf("num_train : %d, ville_depart : %s, ville_arrivee : %s, horaire_depart : %s, horaire_arrivee : %s, prix_usuel : %.2f \n\n",donnees[currentLine].num_train, donnees[currentLine].ville_depart,donnees[currentLine].ville_arrivee, donnees[currentLine].horaire_depart, donnees[currentLine].horaire_arrivee, donnees[currentLine].prix_usuel);
 	}
+	
 	fclose(fichierTrain);
 	
 	int noport = atoi(argv[1]);
 	int numSocket = socketServer(noport, TCP);
 	pid_t fils;
+	
 	while(1)
 	{
 		int serv_sock = accept(numSocket, NULL, NULL);
+		
 		if(serv_sock<0)
 		{
 			printf("Il y a eu une erreur sur accept");
 		}
+		
 		fils = fork();
 		switch(fils)
 		{
 			case 0:
 			{
 				char message[MAX];
+				char resultat[MAX];
+				
 				sprintf(message,"Bonjour, bienvenue sur le serveur.\n");
 				write(serv_sock, message, strlen(message));
 				
-				/*int nb_lu = read(serv_sock, message, MAX-1);
+				//ON RECOIT LA CHAINE DU CLIENT
+				int nb_lu = read(serv_sock, message, MAX);
+				
+				//DECLARATION DES VARIABLES DE STOCKAGE
+				char villeDepartRecu[MAX];
+				char villeArriveRecu[MAX];
+				char HoraireDebutRecu[MAX];
+				char HoraireFinRecu[MAX];
+				char choixTri[MAX];
 				
 				//FAIRE LA DECOMPOSITION DE LA CHAINE
-				int option = atoi(message);
+				strcpy(villeDepartRecu,strtok(message, ";"));
+				strcpy(villeArriveRecu,strtok(NULL, ";"));
+				strcpy(HoraireDebutRecu,strtok(NULL, ";"));
+				strcpy(HoraireFinRecu,strtok(NULL, ";"));
+				strcpy(choixTri,strtok(NULL, ";"));
 				
-				//DEMANDE DE CONSULTATION TRAIN
-				if(option==1)
+				//IDENTIFICATION DE LA CHAINE RECU
+				if(atoi(HoraireFinRecu) == 0)
 				{
-					//CHOIX DU MODE DE SAISIE
-					nb_lu = read( serv_sock, message, MAX-1);
-					
-					switch(option)
+					//IDENTIFICATION DE LA CHAINE RECU
+					if(atoi(HoraireDebutRecu) == 0)
 					{
-						case 1:
-							
-							break;
-						case 2:
-							
-							break;
-						case 3:
-							
-							break;
-					}		
+						//ON EST DANS LA TROISIEME POSSIBILITÉ (Ville de départ et d'arrivée renseignées)
+						sprintf(resultat,"3333333333\n");		
+					}
+					else
+					{
+						//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)
+						struct trains train;
+						int index;
+																		
+						getTrain(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, &train, donnees);
+						
+						printf("COTE LUMIERE\n");
+						printf("%d\n", train.num_train);
+						printf("%s\n", train.ville_depart);
+						printf("%s\n", train.ville_arrivee);
+						printf("%s\n", train.horaire_depart);
+						printf("%s\n", train.horaire_arrivee);
+						
+						strcat(resultat, "Le train");
+						strcat(resultat, "partant de ");
+						strcat(resultat, train.ville_depart);
+						strcat(resultat, "et arrivant à ");
+						strcat(resultat, train.ville_arrivee);
+						strcat(resultat, "partira à ");
+						strcat(resultat, train.horaire_depart);
+						
+						
+					}
 				}
+				else
+				{
+					//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)
+					sprintf(resultat,"22222222222222\n");
+				}	
 				
-				message[nb_lu+1] = 0;
-				printf("%s", message);
-				write( serv_sock, message, nb_lu);*/
+				//LE TRI
+				switch(atoi(choixTri))
+				{
+					//TRI PAR DURÉE DE TRAJET
+					case 1:
+						//////////////A COMPLETER//////////////
+						break;
+					//TRI PAR PRIX
+					case 2:
+						//////////////A COMPLETER//////////////
+						break;
+					//AUCUN TRI
+					case 3:
+						break;
+				}				
+				
+				write(serv_sock, resultat, nb_lu);
+				
 				break;
 			}
+			
+			//LE PÈRE
 			default:
+			
 				break;
 		}
 		
@@ -131,6 +182,7 @@ int main(int argc, char **argv)
 	close(numSocket);
 	return 0;
 }
+
 
 	/*
 	struct sockaddr_in s;
