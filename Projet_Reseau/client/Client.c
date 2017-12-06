@@ -79,6 +79,7 @@ int main(int argc, char **argv)
 		//DEMANDE DE CONSULTATION TRAIN		
 		do{
 			printf("Souhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
+			
 			scanf("%s", choix_consulte);
 			
 		} while(strcmp(choix_consulte, "1") != 0 && strcmp(choix_consulte,"0") != 0);
