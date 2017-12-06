@@ -1,24 +1,12 @@
-/*
- * Serveur.c
- * 
- * Copyright 2017 Jonathan Monbeig <monbeigj@ltsp26>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- * 
- * 
+/**
+ * \file Serveur.c
+ * \brief ....
+ * \author ....
+ * \version 0.1
+ * \date 4 décembre 2017
+ *
+ * (exemeple) Programme de test pour l'objet de gestion des chaînes de caractères Str_t.
+ *
  */
 
 #include "headers/Reseau.h"
@@ -36,21 +24,11 @@
 #define CHOIX 1
 
 /**
-struct in_addr { u_long s_addr; } ;
-
-struct sockaddr_in
-{ 	short sin_family;   lui donner la valeur AF_INET 
-	u_short sin_port;   numéro de port
-	struct in_addr sin_addr;   adresse de la machine
-	char sin_zero[8];  champ rempli de 0
-} ;
- 
-int socket(int domaine, int type, int protocole);
- 
-int bind(int descripteur, const struct sockaddr *p, int len);+
-
-**/
-
+ * \fn int main (void)
+ * \brief Entrée du programme.
+ *
+ * \return EXIT_SUCCESS - Arrêt normal du programme.
+ */
 int main(int argc, char **argv)
 {
 	int nbLignes = nb_line_file(argv[2]);

@@ -1,24 +1,12 @@
-/*
- * trains.c
- * 
- * Copyright 2017 Louis Reynaud <reynloui@ltsp20>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- * 
- * 
+/**
+ * \file Trains.c
+ * \brief ....
+ * \author ....
+ * \version 0.1
+ * \date 5 décembre 2017
+ *
+ * (exemeple) Programme de test pour l'objet de gestion des chaînes de caractères Str_t.
+ *
  */
 
 #define TRAIN_C
@@ -36,7 +24,13 @@
 #include <unistd.h>
 #include "../headers/Trains.h"
 
-
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 {
 	char ligne[VALUE];
@@ -67,11 +61,25 @@ void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 	}
 }
 
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 void filelinetotxt(char * ligne, FILE* fichier_train)
 {
 	fgets(ligne, VALUE, fichier_train);
 }
 
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 int nb_line_file(char * filename)
 {
 	int c, nb_line = 0;
@@ -85,6 +93,13 @@ int nb_line_file(char * filename)
 	return nb_line;
 }
 
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 void getTemps(char * temps, int * res)
 {
 	char *t = temps;
@@ -95,6 +110,13 @@ void getTemps(char * temps, int * res)
 	*res = (heure*100+minute);
 }
 
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains, int nbLignes)
 {
 	int index, horaire = 2360;  // Valeur Max 23:59 -> 2359
@@ -121,6 +143,13 @@ void getTrain(char * villeDepart, char * villeArrivee,char * horaireDepart, stru
 	}
 }
 
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 void structureVersTxt(struct trains train, char* txt) 
 {
 	char construct_txt[MAX]; 
@@ -158,6 +187,13 @@ void structureVersTxt(struct trains train, char* txt)
 	strcpy(txt, construct_txt); 
 }
 
+/**
+ * \fn static Str_t * str_new (const char * sz)
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ *
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ */
 void calculePrix(struct trains *train)
 {
 	//REDUC
