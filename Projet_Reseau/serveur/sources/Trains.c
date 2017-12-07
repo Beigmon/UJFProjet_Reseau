@@ -212,7 +212,8 @@ int getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, str
 		{
 			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0)
 			{
-				ListTrains[indexTab++] = tabTrains[index];
+				ListTrains[indexTab] = tabTrains[index];
+				indexTab++;
 			}
 		}
 	}
@@ -290,7 +291,7 @@ void calculePrix(struct trains *train)
 //FONCTION DE COMPARAISON PAR PRIX CROISSANT
 int compParPrix(const void *v1, const void *v2)
 {
-	char test[MAX];
+
     //RES = 0 SI LES PRIX SONT EGAUX
     int res = 0;
     //TYPAGE DE V1 ET V2 DANS T1 ET T2

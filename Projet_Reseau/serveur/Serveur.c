@@ -127,33 +127,43 @@ int main(int argc, char **argv)
 						nbTrains = getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
 					}
 					
-					//LE TRI
-					switch(atoi(choixTri))
+					if(nbTrains != 0 && ListTrains[0].num_train != 0)
 					{
-						//TRI PAR DURÉE DE TRAJET
-						case 1:
-							trierTrains(ListTrains, nbTrains, "temps");
-							break;
-						//TRI PAR PRIX
-						case 2:
-							trierTrains(ListTrains, nbTrains, "prix");
-							break;
-						//AUCUN TRI
-						default:
-							break;
+						printf("\nJEPASEDANsLEIF");
+						//LE TRI
+						switch(atoi(choixTri))
+						{
+							//TRI PAR DURÉE DE TRAJET
+							case 1:
+								trierTrains(ListTrains, nbTrains, "temps");
+								break;
+							//TRI PAR PRIX
+							case 2:
+								trierTrains(ListTrains, nbTrains, "prix");
+								break;
+							//AUCUN TRI
+							default:
+								break;
+						}
+										
+						int index = 0;
+						strcpy(message, "");  // VIDE la chaine
+						char trainSousText[MAX];
+						for(index = 0; index < nbTrains; index++)
+						{
+							structureVersTxt(ListTrains[index], trainSousText);
+							strcat(message, trainSousText);
+						}
+						printf("\n%s", message);
+						write(serv_sock, message, strlen(message));
 					}
-									
-					int index = 0;
-					strcpy(message, "");  // VIDE la chaine
-					char trainSousText[MAX];
-					while(ListTrains[index].num_train != 0)
+					else
 					{
-						structureVersTxt(ListTrains[index], trainSousText);
-						strcat(message, trainSousText);
-						index++;
+						printf("\nJEPASsEDANSELSeEKSJLKFJ");
+						// ERREUR rien à renvoyer
+						printf("\n%s", message);
+						write(serv_sock, "Aucun train trouvé.;Inconnu;Inconnu;Inconnu;Inconnu;Inconnu", strlen("Aucun train trouvé.;Inconnu;Inconnu;Inconnu;Inconnu;Inconnu"));
 					}
-					
-					write(serv_sock, message, strlen(message));
 					strcpy(message, "");  // VIDE la chaine
 					free(message); free(villeDepartRecu); free(villeArriveRecu); free(HoraireDebutRecu); free(HoraireFinRecu); free(choixTri);
 				}
