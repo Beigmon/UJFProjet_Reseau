@@ -123,17 +123,14 @@ int main(int argc, char **argv)
 				{
 					//TRI PAR DURÉE DE TRAJET
 					case 1:
-						printf("cas1");
 						trierTrains(ListTrains, nbTrains, "temps");
 						break;
 					//TRI PAR PRIX
 					case 2:
-						printf("cas2");
 						trierTrains(ListTrains, nbTrains, "prix");
 						break;
 					//AUCUN TRI
 					default:
-						printf("zzz");
 						break;
 				}
 								

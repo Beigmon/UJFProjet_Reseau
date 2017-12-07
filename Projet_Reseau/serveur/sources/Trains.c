@@ -272,22 +272,17 @@ void structureVersTxt(struct trains train, char* txt)
 void calculePrix(struct trains *train)
 {
 	//REDUC
-	printf("C1\n");
 	double prix = train->prix_usuel;
-	printf("evenement : %d\n", train->evenement);
 	if(train->evenement == 0)
 	{
-		printf("C2\n");
 		prix = prix - (prix * 0.2);
 	}
 	//SUPPL
 	if(train->evenement == 1)
 	{
-		printf("C3\n");
 		prix = prix + (prix * 0.1);
 	}
 	//VIDE
-	printf("C4\n");
 	train->prix_usuel = prix;
 }
 
@@ -357,11 +352,9 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
     //TRI EN PAR PRIX CROISSANT
     if(strcmp(mode, "prix") == 0)
     {
-		printf("prix\n");
         //CALCULE LE PRIX DES TRAINS
         for(index = 0; index<tailleTableau;index++)
         {
-			printf("prix2\n");
             calculePrix(&tabTrains[index]);
         }
 
@@ -371,7 +364,6 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
     //TRI EN PAR DUREE CROISSANTE
     else if(strcmp(mode, "temps") == 0)
     {
-		printf("temps\n");
         //TRI LE TABLEAU DE TRAINS
         qsort(tabTrains, tailleTableau,sizeof(struct trains), compParTemps);
     }
