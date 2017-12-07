@@ -105,12 +105,12 @@ int main(int argc, char **argv)
 		do{
 			printf("Souhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
 			fgets(choix_consulte, sizeof(char*), stdin);
-			//scanf("%s", choix_consulte);
+			scanf("%s", choix_consulte);
 			//getchar(); //AVALE LE \N 
 			//printf("Choix consulte : %s", choix_consulte);
-		} while(strcmp(choix_consulte, "1\n") != 0 && strcmp(choix_consulte,"0\n") != 0);
+		} while(strcmp(choix_consulte, "1") != 0 && strcmp(choix_consulte,"0") != 0);
 		
-		if(strcmp(choix_consulte, "1\n") == 0)
+		if(strcmp(choix_consulte, "1") == 0)
 		{	
 			//DEMANDE DU MODE DE SAISIE
 			do{
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
 			//AFFICHAGE DES DONNEES REÇUES
 			afficherTrains(message);
 		}
-	} while (strcmp(choix_consulte,"1\n") == 0);
+	} while (strcmp(choix_consulte,"1") == 0);
 	
 	// FIN DE PROGRAMME
 	printf("\nAu revoir !\n");
