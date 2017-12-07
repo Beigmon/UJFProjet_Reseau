@@ -33,6 +33,32 @@ static void search(char *chaine)
     }
 }
 
+//AFFICHAGE DES TRAINS DANS "listeTrains"
+void afficherTrains(char* listeTrains)
+{	
+	char *tok;
+	char* saveN;
+	
+    tok =  strtok_r(listeTrains, "\n", &saveN);
+    printf("\n******************************************************** ");
+    printf("\n*************** RÉSULTAT DE LA RECHERCHE *************** ");
+    // BOUCLE TANT QU'IL RESTE UNE LIGNE 
+	while(tok != NULL)
+    {	
+		//"tok" CONTIENT LA LIGNE
+		printf("\n********");
+		printf("\n********\tNuméro du train : %s",strtok(tok, ";"));
+		printf("\n********\tVille de départ : %s",strtok(NULL, ";"));
+		printf("\n********\tVille d'arrivée : %s",strtok(NULL, ";"));
+		printf("\n********\tHoraire de départ : %s",strtok(NULL, ";"));
+		printf("\n********\tHoraire d'arrivée : %s",strtok(NULL, ";"));
+		printf("\n********\tPrix : %s",strtok(NULL, ";"));
+		printf("\n******** -----------------------------------------------\n");
+		//RÉCUPERATION DE LA LIGNE SUIVANTE
+		tok =  strtok_r(NULL, "\n", &saveN);
+    }
+}
+
 int main(int argc, char **argv)
 {
 	int noport = atoi(argv[2]);
@@ -78,13 +104,13 @@ int main(int argc, char **argv)
 		//DEMANDE DE CONSULTATION TRAIN		
 		do{
 			printf("Souhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
-			
-			scanf("%s", choix_consulte);
-			getchar(); //AVALE LE \N 
-			
-		} while(strcmp(choix_consulte, "1") != 0 && strcmp(choix_consulte,"0") != 0);
+			fgets(choix_consulte, sizeof(char*), stdin);
+			//scanf("%s", choix_consulte);
+			//getchar(); //AVALE LE \N 
+			//printf("Choix consulte : %s", choix_consulte);
+		} while(strcmp(choix_consulte, "1\n") != 0 && strcmp(choix_consulte,"0\n") != 0);
 		
-		if(strcmp(choix_consulte, "1") == 0)
+		if(strcmp(choix_consulte, "1\n") == 0)
 		{	
 			//DEMANDE DU MODE DE SAISIE
 			do{
@@ -161,35 +187,34 @@ int main(int argc, char **argv)
 					break;
 			}	
 				
-			//DEMANDE DE TRI
-			do{
-				printf("Quel mode de tri voulez-vous utiliser ?\n\t1.Par durée du trajet\n\t2.Par prix\n\t3.Sans tri\n : ");
-				scanf("%s", choix_tri);
-			} while(strcmp(choix_tri, "1") != 0 && strcmp(choix_tri, "2") != 0 && strcmp(choix_tri, "3") != 0);
-			
-			//AJOUT DU MODE DE TRI A LA REQUETE
-			strcat(construct_requete, ";");
-			switch(atoi(choix_tri))
-			{	
-				//TRI PAR DURÉE DE TRAJET
-				case 1:
-					strcat(construct_requete, "1");
-					break;
-				//TRI PAR PRIX
-				case 2:
-					strcat(construct_requete, "2");
-					break;
-				//AUCUN TRI
-				case 3:
-					strcat(construct_requete, "3");
-					break;
+			if (strcmp(choix_horaire, "1") !=0 )
+			{
+				//DEMANDE DE TRI
+				do{
+					printf("Quel mode de tri voulez-vous utiliser ?\n\t1.Par durée du trajet\n\t2.Par prix\n\t3.Sans tri\n : ");
+					scanf("%s", choix_tri);
+				} while(strcmp(choix_tri, "1") != 0 && strcmp(choix_tri, "2") != 0 && strcmp(choix_tri, "3") != 0);
+				
+				//AJOUT DU MODE DE TRI A LA REQUETE
+				strcat(construct_requete, ";");
+				switch(atoi(choix_tri))
+				{	
+					//TRI PAR DURÉE DE TRAJET
+					case 1:
+						strcat(construct_requete, "1");
+						break;
+					//TRI PAR PRIX
+					case 2:
+						strcat(construct_requete, "2");
+						break;
+					//AUCUN TRI
+					case 3:
+						strcat(construct_requete, "3");
+						break;
+				}
 			}
-			
-			
 			//LA REQUETE EST STOCKÉE DANS LA VARIABLE "REQUETE"
 			strcpy(requete,construct_requete);
-			
-			printf("%s", requete);
 			
 			//ENVOIE DE LA REQUETE
 			write(numSocket, requete, strlen(requete));
@@ -198,9 +223,9 @@ int main(int argc, char **argv)
 			nbLus = read(numSocket, message, MAX);
 			
 			//AFFICHAGE DES DONNEES REÇUES
-			write(1, message, nbLus);
+			afficherTrains(message);
 		}
-	} while (strcmp(choix_consulte,"1") == 0);
+	} while (strcmp(choix_consulte,"1\n") == 0);
 	
 	// FIN DE PROGRAMME
 	printf("\nAu revoir !\n");
