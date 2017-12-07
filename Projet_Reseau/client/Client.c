@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 	//TEST DE LA CONNEXION AU SERVEUR
 	nbLus = read(numSocket, message, MAX);
 	message[nbLus+1] = 0;
-	write(1, message, strlen(message));
+	//write(1, message, strlen(message));
 	
 	//viderChaine(message, strlen(message)); // Vide le tableau
 	
