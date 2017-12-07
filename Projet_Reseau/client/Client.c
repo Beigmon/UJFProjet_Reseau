@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 					
 					break;
 			}	
-				
+			strcat(construct_requete, ";");
 			if (strcmp(choix_horaire, "1") !=0 )
 			{
 				//DEMANDE DE TRI
@@ -192,7 +192,6 @@ int main(int argc, char **argv)
 				} while(strcmp(choix_tri, "1") != 0 && strcmp(choix_tri, "2") != 0 && strcmp(choix_tri, "3") != 0);
 				
 				//AJOUT DU MODE DE TRI A LA REQUETE
-				strcat(construct_requete, ";");
 				switch(atoi(choix_tri))
 				{	
 					//TRI PAR DURÉE DE TRAJET
@@ -208,6 +207,10 @@ int main(int argc, char **argv)
 						strcat(construct_requete, "3");
 						break;
 				}
+			}
+			else
+			{
+				strcat(construct_requete, "3");
 			}
 			//LA REQUETE EST STOCKÉE DANS LA VARIABLE "REQUETE"
 			strcpy(requete,construct_requete);
