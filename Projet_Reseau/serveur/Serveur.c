@@ -65,87 +65,100 @@ int main(int argc, char **argv)
 		{
 			case 0:
 			{
-				char message[MAX];
-				char resultat[MAX];
+				write(serv_sock, "Bonjour, bienvenue sur le serveur.\n", strlen("Bonjour, bienvenue sur le serveur.\n"));
 				
-				sprintf(message,"Bonjour, bienvenue sur le serveur.\n");
-				write(serv_sock, message, strlen(message));
-				
-				//ON RECOIT LA CHAINE DU CLIENT
-				int nbLus = read(serv_sock, message, MAX);
-				
-				//SI ON LIT RIEN
-				if(nbLus == -1)
+				while(1)
 				{
-					return -1;
-				}	
-				
-				//DECLARATION DES VARIABLES DE STOCKAGE
-				char villeDepartRecu[MAX];
-				char villeArriveRecu[MAX];
-				char HoraireDebutRecu[MAX];
-				char HoraireFinRecu[MAX];
-				char choixTri[MAX];
-				int nbTrains; 
-				
-				//FAIRE LA DECOMPOSITION DE LA CHAINE
-				strcpy(villeDepartRecu,strtok(message, ";"));
-				strcpy(villeArriveRecu,strtok(NULL, ";"));
-				strcpy(HoraireDebutRecu,strtok(NULL, ";"));
-				strcpy(HoraireFinRecu,strtok(NULL, ";"));
-				strcpy(choixTri,strtok(NULL, ";"));
-				
-				struct trains *ListTrains =  malloc(nbLignes * sizeof(struct trains));	
-				//IDENTIFICATION DE LA CHAINE RECU
-				if(atoi(HoraireFinRecu) == 0)
-				{
-					//IDENTIFICATION DE LA CHAINE RECU
-					if(atoi(HoraireDebutRecu) == 0)
+					char message[MAX];
+					
+					//ON RECOIT LA CHAINE DU CLIENT
+					int nbLus = read(serv_sock, message, MAX);
+					
+					printf("Chaine recu par le serveur : %s\n", message);
+					
+					//SI ON LIT RIEN
+					if(nbLus == -1)
 					{
-						//ON EST DANS LA TROISIEME POSSIBILITÉ (Ville de départ et d'arrivée renseignées)															
-						nbTrains = getAllTrainsWithStartAndArrival(villeDepartRecu, villeArriveRecu, ListTrains, donnees, nbLignes);
+						return -1;
+					}	
+					
+					if(strcmp(message, "KILL") == 0)
+					{
+						break;
+					}
+					
+					//DECLARATION DES VARIABLES DE STOCKAGE
+					char villeDepartRecu[MAX];
+					char villeArriveRecu[MAX];
+					char HoraireDebutRecu[MAX];
+					char HoraireFinRecu[MAX];
+					char choixTri[MAX];
+					int nbTrains = 0; 
+					
+					//FAIRE LA DECOMPOSITION DE LA CHAINE
+					strcpy(villeDepartRecu,strtok(message, ";"));
+					strcpy(villeArriveRecu,strtok(NULL, ";"));
+					strcpy(HoraireDebutRecu,strtok(NULL, ";"));
+					strcpy(HoraireFinRecu,strtok(NULL, ";"));
+					strcpy(choixTri,strtok(NULL, ";"));
+									
+					
+					struct trains *ListTrains =  malloc(nbLignes * sizeof(struct trains));	
+					//IDENTIFICATION DE LA CHAINE RECU
+					if(atoi(HoraireFinRecu) == 0)
+					{
+						//IDENTIFICATION DE LA CHAINE RECU
+						if(atoi(HoraireDebutRecu) == 0)
+						{
+							//ON EST DANS LA TROISIEME POSSIBILITÉ (Ville de départ et d'arrivée renseignées)															
+							nbTrains = getAllTrainsWithStartAndArrival(villeDepartRecu, villeArriveRecu, ListTrains, donnees, nbLignes);
+						}
+						else
+						{
+							//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)														
+							getOneTrainWithStartArrivalAndTime(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, ListTrains, donnees, nbLignes);
+							nbTrains = 1; 
+						}
 					}
 					else
 					{
-						//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)														
-						getOneTrainWithStartArrivalAndTime(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, ListTrains, donnees, nbLignes);
-						nbTrains = 1; 
+						printf("VILLE DEPART : %s\n", villeDepartRecu);
+						printf("VILLE DEPART : %s\n", villeArriveRecu);
+						//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)																
+						nbTrains = getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
 					}
-				}
-				else
-				{
-					//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)																
-					nbTrains = getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
+					
+					//LE TRI
+					switch(atoi(choixTri))
+					{
+						//TRI PAR DURÉE DE TRAJET
+						case 1:
+							trierTrains(ListTrains, nbTrains, "temps");
+							break;
+						//TRI PAR PRIX
+						case 2:
+							trierTrains(ListTrains, nbTrains, "prix");
+							break;
+						//AUCUN TRI
+						default:
+							break;
+					}
+									
+					int index = 0;
+					strcpy(message, "");  // VIDE la chaine
+					char trainSousText[MAX];
+					while(ListTrains[index].num_train != 0)
+					{
+						structureVersTxt(ListTrains[index], trainSousText);
+						strcat(message, trainSousText);
+						index++;
+					}
+					
+					write(serv_sock, message, strlen(message));
+					strcpy(message, "\0");  // VIDE la chaine
 				}
 				
-				//LE TRI
-				switch(atoi(choixTri))
-				{
-					//TRI PAR DURÉE DE TRAJET
-					case 1:
-						trierTrains(ListTrains, nbTrains, "temps");
-						break;
-					//TRI PAR PRIX
-					case 2:
-						trierTrains(ListTrains, nbTrains, "prix");
-						break;
-					//AUCUN TRI
-					default:
-						break;
-				}
-								
-				int index = 0;
-				char * trainSousText = malloc(MAX * sizeof(char));		
-				while(ListTrains[index].num_train != 0)
-				{
-					structureVersTxt(ListTrains[index], trainSousText);
-					strcat(resultat, trainSousText);
-					index++;
-				}
-				
-				write(serv_sock, resultat, strlen(resultat));
-				
-				break;
+				return EXIT_SUCCESS;
 			}
 			
 			//LE PÈRE
@@ -158,21 +171,3 @@ int main(int argc, char **argv)
 	close(numSocket);
 	return 0;
 }
-
-
-	/*
-	struct sockaddr_in s;
-	int p = socket(AF_INET, SOCK_STREAM, 0);
-	s.sin_family = AF_INET;
-	s.sin_addr.s_addr = htonl(INADDR_ANY);
-	s.sin_port = htons(noport);
-	if(bind( p, (struct sockaddr *) &s, sizeof(s))<0)
-	{
-		printf("Il y a eu une erreur bind");
-	}
-	printf("serveur prêt\n");
-	if(listen( p, 5)<0)
-	{
-		printf("Il y a eu un erreur listen");
-	}*/
-

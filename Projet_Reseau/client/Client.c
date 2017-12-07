@@ -22,15 +22,25 @@
 
 #define MAX 512
 
+/**
+ * Cherche un '\n' et met un 0.
+ * */
 static void search(char *chaine)
 {
     char *p = strchr(chaine, '\n');
-
     if (p)
-
     {
         *p = 0;
     }
+}
+
+void viderChaine(char * chaine, int lg)
+{
+	int i;
+	for(i=0; i<lg; i++)
+	{
+		chaine[i] = 0;
+	}
 }
 
 //AFFICHAGE DES TRAINS DANS "listeTrains"
@@ -75,21 +85,6 @@ int main(int argc, char **argv)
 	char horaire_fin[MAX];
 	char construct_requete[MAX];
 	char requete[MAX];
-		
-	/*struct sockaddr_in s;
-	struct hostent * h;
-	int p = socket(AF_INET, SOCK_STREAM, 0);
-	h = gethostbyname(argv[1]);
-	printf("%s\n ", (*h).h_name);
-
-	s.sin_family = AF_INET;
-	memcpy((char*) &s.sin_addr.s_addr,(char*) h->h_addr_list[0], h->h_length);
-	s.sin_port = htons(noport);
-	int echange = connect( p, (struct sockaddr *) &s, sizeof(s));
-	if(echange<0)
-	{	
-		printf("Il y a eu une erreur de connexion\n");
-	}*/
 	
 	//CONNEXION AU SERVEUR
 	int numSocket = socketClient(argv[1], noport, TCP);
@@ -99,14 +94,15 @@ int main(int argc, char **argv)
 	message[nbLus+1] = 0;
 	write(1, message, strlen(message));
 	
+	//viderChaine(message, strlen(message)); // Vide le tableau
+	
 	//BOUCLE TANT QUE L'UTILISATEUR VEUT CONSULTER DES TRAINS
 	do{
 		//DEMANDE DE CONSULTATION TRAIN		
 		do{
 			printf("Souhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
-			fgets(choix_consulte, sizeof(char*), stdin);
 			scanf("%s", choix_consulte);
-			//getchar(); //AVALE LE \N 
+			getchar(); //AVALE LE \N 
 			//printf("Choix consulte : %s", choix_consulte);
 		} while(strcmp(choix_consulte, "1") != 0 && strcmp(choix_consulte,"0") != 0);
 		
@@ -218,17 +214,21 @@ int main(int argc, char **argv)
 			
 			//ENVOIE DE LA REQUETE
 			write(numSocket, requete, strlen(requete));
+			//viderChaine(message, strlen(message)); // Vide le tableau
 			
 			//RECEPTION DES DONNEES DU SERVEUR
 			nbLus = read(numSocket, message, MAX);
-			
+			printf("REÇU : %s", message);
 			//AFFICHAGE DES DONNEES REÇUES
 			afficherTrains(message);
 		}
 	} while (strcmp(choix_consulte,"1") == 0);
 	
 	// FIN DE PROGRAMME
-	printf("\nAu revoir !\n");
+	write(numSocket, "KILL\0" , strlen("KILL\0"));
+	close(numSocket);
+	
+	printf("\n************ Au revoir ! ************\n");
 	
 	return 0;
 }
