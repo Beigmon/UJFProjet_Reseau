@@ -44,13 +44,13 @@ int main(int argc, char **argv)
 		txtVersStructure(fichierTrain, &donnees[currentLine]);
 		//printf("num_train : %d, ville_depart : %s, ville_arrivee : %s, horaire_depart : %s, horaire_arrivee : %s, prix_usuel : %.2f \n\n",donnees[currentLine].num_train, donnees[currentLine].ville_depart,donnees[currentLine].ville_arrivee, donnees[currentLine].horaire_depart, donnees[currentLine].horaire_arrivee, donnees[currentLine].prix_usuel);
 	}
-	
+
 	fclose(fichierTrain);
 	
 	int noport = atoi(argv[1]);
 	int numSocket = socketServer(noport, TCP);
 	pid_t fils;
-	
+
 	while(1)
 	{
 		int serv_sock = accept(numSocket, NULL, NULL);
@@ -86,6 +86,7 @@ int main(int argc, char **argv)
 				char HoraireDebutRecu[MAX];
 				char HoraireFinRecu[MAX];
 				char choixTri[MAX];
+				int nbTrains; 
 				
 				//FAIRE LA DECOMPOSITION DE LA CHAINE
 				strcpy(villeDepartRecu,strtok(message, ";"));
@@ -102,50 +103,39 @@ int main(int argc, char **argv)
 					if(atoi(HoraireDebutRecu) == 0)
 					{
 						//ON EST DANS LA TROISIEME POSSIBILITÉ (Ville de départ et d'arrivée renseignées)															
-						getAllTrainsWithStartAndArrival(villeDepartRecu, villeArriveRecu, ListTrains, donnees, nbLignes);
+						nbTrains = getAllTrainsWithStartAndArrival(villeDepartRecu, villeArriveRecu, ListTrains, donnees, nbLignes);
 					}
 					else
 					{
 						//ON EST DANS LE PREMIER POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ)														
 						getOneTrainWithStartArrivalAndTime(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, ListTrains, donnees, nbLignes);
+						nbTrains = 1; 
 					}
 				}
 				else
 				{
 					//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)																
-					getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
-				}	
-				printf("choixTrie : %s\n", choixTri);
-				int chx = atoi(choixTri);
-				printf("choixTrie : %d\n", chx);
-				if (chx == 1)
-				{
-					printf("cas1\n");
-					trierTrains(ListTrains, 4, "temps"); //IL FAUT CONNAITRE LA TAILLE DU TABLEAU !!!!!!!!!!!!!!!!
+					nbTrains = getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
 				}
-				else
-				{
-					printf("cas2\n");
-					trierTrains(ListTrains, 4, "prix"); //IL FAUT CONNAITRE LA TAILLE DU TABLEAU !!!!!!!!!!!!!!!!
-				}
+				
 				//LE TRI
-				/*switch(chx)
+				switch(atoi(choixTri))
 				{
 					//TRI PAR DURÉE DE TRAJET
 					case 1:
 						printf("cas1");
-						trierTrains(ListTrains, nbLignes, "temps");
+						trierTrains(ListTrains, nbTrains, "temps");
 						break;
 					//TRI PAR PRIX
 					case 2:
 						printf("cas2");
-						trierTrains(ListTrains, nbLignes, "prix");
+						trierTrains(ListTrains, nbTrains, "prix");
 						break;
 					//AUCUN TRI
 					default:
 						printf("zzz");
 						break;
-				}*/
+				}
 								
 				int index = 0;
 				char * trainSousText = malloc(MAX * sizeof(char));		

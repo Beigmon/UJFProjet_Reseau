@@ -3,9 +3,9 @@
  * \brief ....
  * \author ....
  * \version 0.1
- * \date 5 dÃ©cembre 2017
+ * \date 5 décembre 2017
  *
- * (exemeple) Programme de test pour l'objet de gestion des chaÃ®nes de caractÃ¨res Str_t.
+ * (exemeple) Programme de test pour l'objet de gestion des chaînes de caractères Str_t.
  *
  */
 
@@ -25,11 +25,12 @@
 #include "../headers/Trains.h"
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \fn void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
+ * \brief Procédure d'association des éléments d'un objet struct trains à partir d'une ligne d'un fichier.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param fichierTrain Fichier utilisé pour récupérer les éléments de l'objet , ne peut être NULL.
+ * \param tabTrains objet de type struct trains dans lequel on associe les éléments à la ligne du fichier.
+ * \return void.
  */
 void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 {
@@ -45,7 +46,7 @@ void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 	strcpy(tabTrains->horaire_depart,strtok(NULL, ";"));
 	strcpy(tabTrains->horaire_arrivee,strtok(NULL, ";"));
 	tabTrains->prix_usuel = atof(strtok(NULL, ";"));
-	
+
 	const char * actionPrix = strtok(NULL, ";");
 	if(strcmp(actionPrix, REDUC) == 0)
 	{
@@ -55,18 +56,19 @@ void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 	{
 		tabTrains->evenement = 1;  // SUPPL
 	}
-	else 
+	else
 	{
 		tabTrains->evenement = 2;  // VIDE
 	}
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \fn void filelinetotxt(char * ligne, FILE* fichier_train)
+ * \brief Procédure transmettant la ligne actuelle du fichier fichier_train à la chaîne de caractères ligne.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param ligne, chaine de caractères, ne peut être NULL.
+ * \param fichier_train, fichier parcouru, ne peut être NULL.
+ * \return void.
  */
 void filelinetotxt(char * ligne, FILE* fichier_train)
 {
@@ -74,11 +76,11 @@ void filelinetotxt(char * ligne, FILE* fichier_train)
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * int nb_line_file(char * filename)
+ * \brief Fonction de calcul du nombre de lignes d'un fichier de racine filename.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param filename, racine du fichier, ne peut être NULL.
+ * \return nb_line, nombre de lignes du fichier de racine filename.
  */
 int nb_line_file(char * filename)
 {
@@ -94,11 +96,12 @@ int nb_line_file(char * filename)
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * void getTemps(char * temps, int * res)
+ * \brief Procédure adaptant une heure en chaîne de caractère temps dans un entier res de la forme "00:00" à l'entier 0000.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param temps Chaîne de caractère contenant l'heure, ne peut être NULL.
+ * \param res, entier contenant l'heure sous la forme 2359 pour "23:59", ne peut être NULL.
+ * \return void.
  */
 void getTemps(char * temps, int * res)
 {
@@ -106,26 +109,31 @@ void getTemps(char * temps, int * res)
 	char * pEnd;
 	int heure = strtol(t, &pEnd, 10);
 	int minute = strtol (pEnd+1,&pEnd,10);
-	
+
 	*res = (heure*100+minute);
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \fn void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee,char * horaireDebut, struct trains *train, struct trains *tabTrains, int nbLignes)
+ * \brief Procédure associant un objet struct trains train à un des élément d'un tableau d'objets struct trains tabTrains en fonction d'une ville de départ, d'arrivée et un horaire.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param villeDepart, chaîne de caractère contenant la ville de départ, ne peut être NULL.
+ * \param villeArrivee, chaîne de caractère contenant la ville d'arrivée, ne peut être NULL.
+ * \param horaireDebut, chaîne de caractère contenant l'horaire, ne peut être NULL.
+ * \param train, objet de type struct trains contenant le résultat de la procédure, ne peut être NULL.
+ * \param tabTrains, tableau d'objets de type struct trains contenant les données du programme, ne peut être NULL.
+ * \param nbLignes, nombre de lignes du tableau tabTrains, ne peut être NULL.
+ * \return void.
  */
-void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee,char * horaireDebut, struct trains *train, struct trains *tabTrains, int nbLignes)
+void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee, char * horaireDebut, struct trains *train, struct trains *tabTrains, int nbLignes)
 {
 	int index, horaire = 2360;  // Valeur Max 23:59 -> 2359
-	
+
 	for(index = 0; index < nbLignes; index++)
 	{
 		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
 		{
-			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0) 
+			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0)
 			{
 				int bestFoundH, currentH;
 				getTemps(tabTrains[index].horaire_depart, &bestFoundH);
@@ -144,27 +152,33 @@ void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee,
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \fn void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+ * \brief Procédure associant un tableau d'objets struct trains train à des éléments d'un tableau d'objets struct trains tabTrains en fonction d'une ville de départ, d'arrivée et une tranche horaire(début, fin).
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param villeDepart, chaîne de caractère contenant la ville de départ, ne peut être NULL.
+ * \param villeArrivee, chaîne de caractère contenant la ville d'arrivée, ne peut être NULL.
+ * \param horaireDebut, chaîne de caractère contenant l'horaire, ne peut être NULL.
+ * \param horaireFin, chaîne de caractère contenant l'horaire, ne peut être NULL.
+ * \param train, objet de type struct trains contenant le résultat de la procédure, ne peut être NULL.
+ * \param tabTrains, tableau d'objets de type struct trains contenant les données du programme, ne peut être NULL.
+ * \param nbLignes, nombre de lignes du tableau tabTrains, ne peut être NULL.
+ * \return int, le nombre de trains revoyés..
  */
-void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+int getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
 {
 	int index, indexTab = 0;
 	int hDeb; getTemps(horaireDebut, &hDeb);
 	int hFin; getTemps(horaireFin, &hFin);
-	
+
 	for(index = 0; index < nbLignes; index++)
 	{
 		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
 		{
-			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0) 
+			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0)
 			{
 				int currentDeb;
 				getTemps(tabTrains[index].horaire_depart, &currentDeb);
-								
+
 				if (currentDeb>=hDeb && currentDeb<=hFin)
 				{
 					ListTrains[indexTab++] = tabTrains[index];
@@ -172,87 +186,93 @@ void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * ho
 			}
 		}
 	}
+	return indexTab-1;
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \fn void getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+ * \brief Procédure associant un tableau d'objets struct trains train à tous les éléments du tableau d'objets struct trains tabTrains concordant à une ville de départ et d'arrivée.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param villeDepart, chaîne de caractère contenant la ville de départ, ne peut être NULL.
+ * \param villeArrivee, chaîne de caractère contenant la ville d'arrivée, ne peut être NULL.
+ * \param ListTrains, objet de type struct trains contenant le résultat de la procédure, ne peut être NULL.
+ * \param tabTrains, tableau d'objets de type struct trains contenant les données du programme, ne peut être NULL.
+ * \param nbLignes, nombre de lignes du tableau tabTrains, ne peut être NULL.
+ * \return int, le nombre de trains revoyés.
  */
-void getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
+int getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
 {
 	int index, indexTab = 0;
-	
+
 	for(index = 0; index < nbLignes; index++)
 	{
 		if (strcmp(tabTrains[index].ville_depart, villeDepart) == 0)
 		{
-			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0) 
-			{			
-				ListTrains[indexTab++] = tabTrains[index];			
+			if (strcmp(tabTrains[index].ville_arrivee, villeArrivee) == 0)
+			{
+				ListTrains[indexTab++] = tabTrains[index];
 			}
 		}
 	}
+	return indexTab-1;
 }
 
 /**
  * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
  */
-void structureVersTxt(struct trains train, char* txt) 
+void structureVersTxt(struct trains train, char* txt)
 {
-	char construct_txt[MAX]; 
-	//char txt[MAX]; 
-	char num[MAX]; 
+	char construct_txt[MAX];
+	//char txt[MAX];
+	char num[MAX];
 	char prix[MAX];
-	
-	strcpy(txt, ""); 
-	strcpy(construct_txt, ""); 
-	
-	strcpy(num, ""); 
+
+	strcpy(txt, "");
+	strcpy(construct_txt, "");
+
+	strcpy(num, "");
 	sprintf(num, "%d", train.num_train);
-	
+
 	strcpy(prix, "");
 	sprintf(prix, "%.2f", train.prix_usuel);
 
 	strcat(construct_txt, num);
 	strcat(construct_txt, ";");
-	
+
 	strcat(construct_txt, train.ville_depart);
 	strcat(construct_txt, ";");
-	
+
 	strcat(construct_txt, train.ville_arrivee);
 	strcat(construct_txt, ";");
-	
+
 	strcat(construct_txt, train.horaire_depart);
 	strcat(construct_txt, ";");
-	
+
 	strcat(construct_txt, train.horaire_arrivee);
 	strcat(construct_txt, ";");
-	
+
 	strcat(construct_txt, prix);
 	strcat(construct_txt, "\n");
-	
-	strcpy(txt, construct_txt); 
+
+	strcpy(txt, construct_txt);
 }
 
 /**
  * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de crÃ©ation d'une nouvelle instance d'un objet Str_t.
+ * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
  *
- * \param sz ChaÃ®ne Ã  stocker dans l'objet Str_t, ne peut Ãªtre NULL.
- * \return Instance nouvellement allouÃ©e d'un objet de type Str_t ou NULL.
+ * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
+ * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
  */
 void calculePrix(struct trains *train)
 {
 	//REDUC
 	double prix = train->prix_usuel;
-	if(train->evenement == 0) 
+	if(train->evenement == 0)
 	{
 		prix = prix - (prix * 0.2);
 	}
@@ -272,9 +292,9 @@ int compParPrix(const void *v1, const void *v2)
     int res = 0;
     //TYPAGE DE V1 ET V2 DANS T1 ET T2
     struct trains *t1 = (struct trains *)v1;
-    struct trains *t2     = (struct trains *)v2;
+    struct trains *t2 = (struct trains *)v2;
 
-    //RÃ‰CUPÃ‰RATION DES PRIX (DÃ‰JÃ€ CALCULÃ‰S)
+    //RÉCUPÉRATION DES PRIX (DÉJÀ CALCULÉS)
     double prix1 = t1->prix_usuel;
     double prix2 = t2->prix_usuel;
 
@@ -293,7 +313,6 @@ int compParPrix(const void *v1, const void *v2)
 //FONCTION DE COMPARAISON PAR TEMPS CROISSANT
 int compParTemps(const void *v1, const void *v2)
 {
-	printf("tempsCMP\n");
     //RES = 0 SI LES TEMPS SONT EGAUX
     int res = 0;
 
@@ -301,13 +320,13 @@ int compParTemps(const void *v1, const void *v2)
     struct trains *t1 = (struct trains *)v1;
     struct trains *t2 = (struct trains *)v2;
 
-    //VARIABLES DE RÃ‰CUPERATION DES TEMPS
+    //VARIABLES DE RÉCUPERATION DES TEMPS
     int tempsDepart1;
     int tempsArrivee1;
     int tempsDepart2;
     int tempsArrivee2;
 
-    //AFFECTATION DES DONNÃ‰ES AUX VARIABLES
+    //AFFECTATION DES DONNÉES AUX VARIABLES
     getTemps(t1->horaire_depart, &tempsDepart1);
     getTemps(t1->horaire_arrivee, &tempsArrivee1);
     getTemps(t2->horaire_depart, &tempsDepart2);
@@ -325,7 +344,7 @@ int compParTemps(const void *v1, const void *v2)
     return res;
 }
 
-//TRI UN TABLEAU DE TRAIN (*tabTrains) EN FONCTION DU PARAMÃˆTRE "mode" (prix/temps)
+//TRI UN TABLEAU DE TRAIN (*tabTrains) EN FONCTION DU PARAMÈTRE "mode" (prix/temps)
 void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
 {
     int index;
@@ -333,20 +352,20 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
     if(strcmp(mode, "prix") == 0)
     {
 		printf("prix\n");
-        //CALCULE LE PRIX DES TRAINS 
-        for(index = 0; index<tailleTableau;index++) 
+        //CALCULE LE PRIX DES TRAINS
+        for(index = 0; index<tailleTableau;index++)
         {
             calculePrix(&tabTrains[index]);
         }
 
-        //TRI LE TABLEAU DE TRAINS 
+        //TRI LE TABLEAU DE TRAINS
         qsort(tabTrains, tailleTableau,sizeof(struct trains), compParPrix);
     }
     //TRI EN PAR DUREE CROISSANTE
-    else//else if(strcmp(mode, "temps") == 0)
+    else if(strcmp(mode, "temps") == 0)
     {
 		printf("temps\n");
-        //TRI LE TABLEAU DE TRAINS 
+        //TRI LE TABLEAU DE TRAINS
         qsort(tabTrains, tailleTableau,sizeof(struct trains), compParTemps);
     }
 }

@@ -59,9 +59,9 @@ PUBLIC void getTemps(char * temps, int * res);
 
 PUBLIC void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee,char * horaireDepart, struct trains *train, struct trains *tabTrains, int nbLignes);
 
-PUBLIC void getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
+PUBLIC int getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
 
-PUBLIC void getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
+PUBLIC int getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, struct trains *ListTrains, struct trains *tabTrains, int nbLignes);
 
 PUBLIC void structureVersTxt(struct trains train, char* txt);
 
