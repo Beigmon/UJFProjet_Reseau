@@ -12,7 +12,7 @@ EXCSERV = /bin/Serveur
 OBJSSERV = $(SERV)/Serveur.c $(SERV)$(SOURCE)/*.c  $(SERV)$(RESH)
 OBJSCLI = $(CLI)/Client.c $(CLI)$(SOURCE)/*.c $(CLI)$(RESH)
 
-all : Client Serveur
+all : Client Serveur clean_o
 
 Serveur : Serveur.o Reseau_serveur.o Trains.o
 	$(CO) $(SERV)$(EXCSERV) Serveur.o Reseau.o Trains.o
@@ -37,3 +37,8 @@ Trains.o : $(SERV)$(SOURCE)/Trains.c $(SERV)$(HEADER)/Trains.h
 
 clean :
 	rm -f $(OBJS) $(SERV)$(SOURCE)/$(OBJS) $(CLI)$(SOURCE)/$(OBJS) $(CLI)$(EXCCLI) $(SERV)$(EXCSERV)
+
+clean_o :
+	rm -f $(OBJS) $(SERV)/$(OBJS) $(CLI)/$(OBJS) $(SERV)$(SOURCE)/$(OBJS) $(CLI)$(SOURCE)/$(OBJS)
+
+
