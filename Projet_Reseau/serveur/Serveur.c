@@ -1,12 +1,9 @@
 /**
  * \file Serveur.c
- * \brief ....
- * \author ....
+ * \brief Le serveur
+ * \author Florian PIGNARD & Jonathan MONBEIG & Mathieu CLUSEL & Louis REYNAUD 
  * \version 0.1
  * \date 4 décembre 2017
- *
- * (exemeple) Programme de test pour l'objet de gestion des chaînes de caractères Str_t.
- *
  */
 
 #include "headers/Reseau.h"

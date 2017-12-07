@@ -1,14 +1,11 @@
 /**
  * \file Client.c
- * \brief ....
- * \author ....
+ * \brief Le Client.
+ * \author Florian PIGNARD & Jonathan MONBEIG & Mathieu CLUSEL & Louis REYNAUD 
  * \version 0.1
- * \date 5 décembre 2017
- *
- * (exemeple) Programme de test pour l'objet de gestion des chaînes de caractères Str_t.
- *
+ * \date 4 décembre 2017
  */
- 
+
 #include "headers/Reseau.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,42 +20,43 @@
 #define MAX 512
 
 /**
- * Cherche un '\n' et met un 0.
- * */
-static void search(char *chaine)
+ * \fn void search(char *chaine)
+ * \brief Recherche '\n' et remplace par un 0. Utilisé sur la chaine captée par fgets puisque un '\n' est présent dans cette chaine et nous devons l'enlever.
+ *
+ * \param char *chaine, c'est dans cette chaine que l'on va recherché un retour à la ligne afin de le remplacer par un 0.
+ * \return void.
+ */
+void search(char *chaine)
 {
-    char *p = strchr(chaine, '\n');
-    if (p)
+    char *caractere = strchr(chaine, '\n');
+    if (caractere)
     {
-        *p = 0;
+        *caractere = 0;
     }
 }
 
-void viderChaine(char * chaine, int lg)
-{
-	int i;
-	for(i=0; i<lg; i++)
-	{
-		chaine[i] = 0;
-	}
-}
-
+/**
+ * \fn void afficherTrains(char* listeTrains)
+ * \brief Décompose, met en forme et affiche une liste de trains.
+ *
+ * \param char* listeTrains, contient le resultat de la requete.
+ * \return void.
+ */
 //AFFICHAGE DES TRAINS DANS "listeTrains"
 void afficherTrains(char* listeTrains)
 {	
-	char *tok;
+	char *trainAAfficher;
 	char* saveN;
 	
-    tok =  strtok_r(listeTrains, "\n", &saveN);
+    trainAAfficher =  strtok_r(listeTrains, "\n", &saveN);
     printf("\n******************************************************** ");
     printf("\n*************** RÉSULTAT DE LA RECHERCHE *************** ");
     printf("\n********");
     // BOUCLE TANT QU'IL RESTE UNE LIGNE 
-	while(tok != NULL)
+	while(trainAAfficher != NULL)
     {	
-		//"tok" CONTIENT LA LIGNE
-		//printf("\n********");
-		printf("\n********\tNuméro du train : %s",strtok(tok, ";"));
+		//"trainAAfficher" CONTIENT LA LIGNE
+		printf("\n********\tNuméro du train : %s",strtok(trainAAfficher, ";"));
 		printf("\n********\tVille de départ : %s",strtok(NULL, ";"));
 		printf("\n********\tVille d'arrivée : %s",strtok(NULL, ";"));
 		printf("\n********\tHoraire de départ : %s",strtok(NULL, ";"));
@@ -66,9 +64,10 @@ void afficherTrains(char* listeTrains)
 		printf("\n********\tPrix : %s",strtok(NULL, ";"));
 		printf("\n******** -----------------------------------------------");
 		//RÉCUPERATION DE LA LIGNE SUIVANTE
-		tok =  strtok_r(NULL, "\n", &saveN);
+		trainAAfficher =  strtok_r(NULL, "\n", &saveN);
     }
 }
+
 
 int main(int argc, char **argv)
 {
@@ -93,9 +92,6 @@ int main(int argc, char **argv)
 	//TEST DE LA CONNEXION AU SERVEUR
 	nbLus = read(numSocket, message, MAX);
 	message[nbLus+1] = 0;
-	//write(1, message, strlen(message));
-	
-	//viderChaine(message, strlen(message)); // Vide le tableau
 	
 	//BOUCLE TANT QUE L'UTILISATEUR VEUT CONSULTER DES TRAINS
 	do{
@@ -107,6 +103,7 @@ int main(int argc, char **argv)
 			//printf("Choix consulte : %s", choix_consulte);
 		} while(strcmp(choix_consulte, "1") != 0 && strcmp(choix_consulte,"0") != 0);
 		
+		//SI L'UTILISATEUR SOUHAITE CONSULTER DES TRAINS
 		if(strcmp(choix_consulte, "1") == 0)
 		{	
 			//DEMANDE DU MODE DE SAISIE
@@ -117,21 +114,21 @@ int main(int argc, char **argv)
 				
 			}while(strcmp(choix_horaire,"1") != 0 && strcmp(choix_horaire,"2") != 0 && strcmp(choix_horaire,"3") != 0);
 			
-			//VILLE DE DÉPART
+			//SAISIE DE LA VILLE DE DÉPART
 			printf("Saisissez une ville de départ : ");
 			fgets(ville_depart, sizeof(ville_depart), stdin);
 			search(ville_depart);
 						
-			//VILLE D'ARRIVÉE
+			//SAISIE DE LA VILLE D'ARRIVÉE
 			printf("Saisissez une ville d'arrivée : ");
 			fgets(ville_arrivee, sizeof(ville_arrivee), stdin);
-						
 			search(ville_arrivee);
 			
 			//INITIALISATION DES TABLEAUX A VIDE
 			strcpy(requete, "");
 			strcpy(construct_requete,  "");
 			
+			//EN FONCTION DU CHOIX DU MODE DE SAISIE
 			switch(atoi(choix_horaire))
 			{
 				case 1:
@@ -154,9 +151,9 @@ int main(int argc, char **argv)
 				case 2:
 				
 					//RÉCUPÉRATION DES DONNÉES
-					printf("Saisissez un horaire de début : ");
+					printf("Saisissez le début de la tranche horaire : ");
 					scanf("%s", horaire_debut);
-					printf("Saisissez un horaire de fin : ");
+					printf("Saisissez la fin de la tranche horaire : ");
 					scanf("%s", horaire_fin);
 					
 					//CONSTRUCTION DE LA REQUETE DANS REQUETE
@@ -182,8 +179,11 @@ int main(int argc, char **argv)
 					strcat(construct_requete, "0");
 					
 					break;
-			}	
+			}
+			
+			//ON RAJOUTE LE ; APRES HORAIRE	
 			strcat(construct_requete, ";");
+			
 			if (strcmp(choix_horaire, "1") !=0 )
 			{
 				//DEMANDE DE TRI
@@ -213,13 +213,13 @@ int main(int argc, char **argv)
 			{
 				strcat(construct_requete, "3");
 			}
+			
 			//LA REQUETE EST STOCKÉE DANS LA VARIABLE "REQUETE"
 			strcpy(requete,construct_requete);
 			
 			//ENVOIE DE LA REQUETE
 			write(numSocket, requete, strlen(requete));
-			//viderChaine(message, strlen(message)); // Vide le tableau
-			
+						
 			//RECEPTION DES DONNEES DU SERVEUR
 			nbLus = read(numSocket, message, MAX);
 			//AFFICHAGE DES DONNEES REÇUES
@@ -229,6 +229,7 @@ int main(int argc, char **argv)
 	
 	// FIN DE PROGRAMME
 	write(numSocket, "KILL" , strlen("KILL"));
+	
 	close(numSocket);
 	
 	printf("\n************ Au revoir ! ************\n");
