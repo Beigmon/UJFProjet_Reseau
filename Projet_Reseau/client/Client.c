@@ -57,7 +57,7 @@ void afficherTrains(char* listeTrains)
 	while(tok != NULL)
     {	
 		//"tok" CONTIENT LA LIGNE
-		printf("\n********");
+		//printf("\n********");
 		printf("\n********\tNuméro du train : %s",strtok(tok, ";"));
 		printf("\n********\tVille de départ : %s",strtok(NULL, ";"));
 		printf("\n********\tVille d'arrivée : %s",strtok(NULL, ";"));
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 	do{
 		//DEMANDE DE CONSULTATION TRAIN		
 		do{
-			printf("Souhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
+			printf("\nSouhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
 			scanf("%s", choix_consulte);
 			getchar(); //AVALE LE \N 
 			//printf("Choix consulte : %s", choix_consulte);
@@ -154,9 +154,9 @@ int main(int argc, char **argv)
 				case 2:
 				
 					//RÉCUPÉRATION DES DONNÉES
-					printf("Saisissez un horaire de départ : ");
+					printf("Saisissez un horaire de début : ");
 					scanf("%s", horaire_debut);
-					printf("Saisissez un horaire d'arrivée : ");
+					printf("Saisissez un horaire de fin : ");
 					scanf("%s", horaire_fin);
 					
 					//CONSTRUCTION DE LA REQUETE DANS REQUETE
@@ -222,14 +222,13 @@ int main(int argc, char **argv)
 			
 			//RECEPTION DES DONNEES DU SERVEUR
 			nbLus = read(numSocket, message, MAX);
-			printf("REÇU : %s", message);
 			//AFFICHAGE DES DONNEES REÇUES
 			afficherTrains(message);
 		}
 	} while (strcmp(choix_consulte,"1") == 0);
 	
 	// FIN DE PROGRAMME
-	write(numSocket, "KILL\0" , strlen("KILL\0"));
+	write(numSocket, "KILL" , strlen("KILL"));
 	close(numSocket);
 	
 	printf("\n************ Au revoir ! ************\n");

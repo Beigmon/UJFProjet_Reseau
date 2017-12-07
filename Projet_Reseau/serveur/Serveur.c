@@ -58,6 +58,7 @@ int main(int argc, char **argv)
 		if(serv_sock<0)
 		{
 			printf("Il y a eu une erreur sur accept");
+			return EXIT_FAILURE;
 		}
 		
 		fils = fork();
@@ -153,7 +154,7 @@ int main(int argc, char **argv)
 					}
 					
 					write(serv_sock, message, strlen(message));
-					strcpy(message, "\0");  // VIDE la chaine
+					strcpy(message, "");  // VIDE la chaine
 					free(message); free(villeDepartRecu); free(villeArriveRecu); free(HoraireDebutRecu); free(HoraireFinRecu); free(choixTri);
 				}
 				

@@ -182,7 +182,8 @@ int getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * hor
 
 				if (currentDeb>=hDeb && currentDeb<=hFin)
 				{
-					ListTrains[indexTab++] = tabTrains[index];
+					ListTrains[indexTab] = tabTrains[index];
+					indexTab++;
 				}
 			}
 		}
@@ -289,12 +290,13 @@ void calculePrix(struct trains *train)
 //FONCTION DE COMPARAISON PAR PRIX CROISSANT
 int compParPrix(const void *v1, const void *v2)
 {
+	char test[MAX];
     //RES = 0 SI LES PRIX SONT EGAUX
     int res = 0;
     //TYPAGE DE V1 ET V2 DANS T1 ET T2
     struct trains *t1 = (struct trains *)v1;
     struct trains *t2 = (struct trains *)v2;
-
+    
     //RÉCUPÉRATION DES PRIX (DÉJÀ CALCULÉS)
     double prix1 = t1->prix_usuel;
     double prix2 = t2->prix_usuel;
