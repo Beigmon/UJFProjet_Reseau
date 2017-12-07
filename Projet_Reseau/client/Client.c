@@ -22,6 +22,17 @@
 
 #define MAX 512
 
+static void search(char *chaine)
+{
+    char *p = strchr(chaine, '\n');
+
+    if (p)
+
+    {
+        *p = 0;
+    }
+}
+
 int main(int argc, char **argv)
 {
 	int noport = atoi(argv[2]);
@@ -69,6 +80,7 @@ int main(int argc, char **argv)
 			printf("Souhaitez-vous consulter les trains? (Oui = 1/ Non = 0) : ");
 			
 			scanf("%s", choix_consulte);
+			getchar(); //AVALE LE \N 
 			
 		} while(strcmp(choix_consulte, "1") != 0 && strcmp(choix_consulte,"0") != 0);
 		
@@ -78,16 +90,20 @@ int main(int argc, char **argv)
 			do{
 				printf("Quel mode de selections voulez-vous utiliser ?\n\t1.Par horaire de départ\n\t2.Par tranche d'horaire\n\t3.Sans horaires\n: ");
 				scanf("%s", choix_horaire);
+				getchar();
 				
 			}while(strcmp(choix_horaire,"1") != 0 && strcmp(choix_horaire,"2") != 0 && strcmp(choix_horaire,"3") != 0);
 			
 			//VILLE DE DÉPART
 			printf("Saisissez une ville de départ : ");
-			scanf("%s", ville_depart);
+			fgets(ville_depart, sizeof(ville_depart), stdin);
+			search(ville_depart);
 						
 			//VILLE D'ARRIVÉE
 			printf("Saisissez une ville d'arrivée : ");
-			scanf("%s", ville_arrivee);
+			fgets(ville_arrivee, sizeof(ville_arrivee), stdin);
+						
+			search(ville_arrivee);
 			
 			//INITIALISATION DES TABLEAUX A VIDE
 			strcpy(requete, "");
@@ -172,6 +188,8 @@ int main(int argc, char **argv)
 			
 			//LA REQUETE EST STOCKÉE DANS LA VARIABLE "REQUETE"
 			strcpy(requete,construct_requete);
+			
+			printf("%s", requete);
 			
 			//ENVOIE DE LA REQUETE
 			write(numSocket, requete, strlen(requete));
