@@ -1,12 +1,9 @@
 /**
  * \file Trains.c
- * \brief ....
- * \author ....
+ * \brief Gestion des Trains.
+ * \author Florian PIGNARD & Jonathan MONBEIG & Mathieu CLUSEL & Louis REYNAUD 
  * \version 0.1
  * \date 5 décembre 2017
- *
- * (exemeple) Programme de test pour l'objet de gestion des chaînes de caractères Str_t.
- *
  */
 
 #define TRAIN_C
@@ -163,7 +160,7 @@ void getOneTrainWithStartArrivalAndTime(char * villeDepart, char * villeArrivee,
  * \param train, objet de type struct trains contenant le résultat de la procédure, ne peut être NULL.
  * \param tabTrains, tableau d'objets de type struct trains contenant les données du programme, ne peut être NULL.
  * \param nbLignes, nombre de lignes du tableau tabTrains, ne peut être NULL.
- * \return int, le nombre de trains revoyés..
+ * \return int, le nombre de trains revoyés.
  */
 int getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * horaireDebut, char * horaireFin, struct trains *ListTrains, struct trains *tabTrains, int nbLignes)
 {
@@ -265,11 +262,11 @@ void structureVersTxt(struct trains train, char* txt)
 }
 
 /**
- * \fn static Str_t * str_new (const char * sz)
- * \brief Fonction de création d'une nouvelle instance d'un objet Str_t.
+ * \fn void calculePrix(struct trains *train)
+ * \brief Calcule le prix d'un billet de train selon sa réduction (20%) ou son augmentation (10%).
  *
- * \param sz Chaîne à stocker dans l'objet Str_t, ne peut être NULL.
- * \return Instance nouvellement allouée d'un objet de type Str_t ou NULL.
+ * \param struct trains *train, un train.
+ * \return void.
  */
 void calculePrix(struct trains *train)
 {
@@ -288,41 +285,54 @@ void calculePrix(struct trains *train)
 	train->prix_usuel = prix;
 }
 
-//FONCTION DE COMPARAISON PAR PRIX CROISSANT
-int compParPrix(const void *v1, const void *v2)
+/**
+ * \fn int compParPrix(const void *elmTrain1, const void *elmTrain2)
+ * \brief Fonction de comparaison par prix croissant.
+ *
+ * \param const void *elmTrain1, un train.
+ * \param const void *elmTrain2, un train.
+ * \return int, si la fontion revoi 1 elmTrain1 est plus chère que elmTrain2 sinon on a -1 si elmTrain1 est moins chère que elmTrain2 sinon on a 0.
+ */
+int compParPrix(const void *elmTrain1, const void *elmTrain2)
 {
-
     //RES = 0 SI LES PRIX SONT EGAUX
     int res = 0;
     //TYPAGE DE V1 ET V2 DANS T1 ET T2
-    struct trains *t1 = (struct trains *)v1;
-    struct trains *t2 = (struct trains *)v2;
+    struct trains *train1 = (struct trains *)elmTrain1;
+    struct trains *train2 = (struct trains *)elmTrain2;
     
     //RÉCUPÉRATION DES PRIX (DÉJÀ CALCULÉS)
-    double prix1 = t1->prix_usuel;
-    double prix2 = t2->prix_usuel;
+    double prix1 = train1->prix_usuel;
+    double prix2 = train2->prix_usuel;
     
     //COMPARAISON DES PRIX
     if(prix1 > prix2)
     {
         res = 1;
     }
-    if(prix1 < prix2)
+    else if(prix1 < prix2)
     {
         res = -1;
     }
     return res;
 }
 
-//FONCTION DE COMPARAISON PAR TEMPS CROISSANT
-int compParTemps(const void *v1, const void *v2)
+/**
+ * \fn int compParTemps(const void *elmTrain1, const void *elmTrain2)
+ * \brief Fonction de comparaison par prix croissant.
+ *
+ * \param const void *elmTrain1, un train.
+ * \param const void *elmTrain2, un train.
+ * \return int, si la fontion revoi 1 elmTrain1 est plus tard que elmTrain2 sinon on a -1 si elmTrain1 est plus tôt que elmTrain2 sinon on a 0 soit il arrive à la même heure.
+ */
+int compParTemps(const void *elmTrain1, const void *elmTrain2)
 {
     //RES = 0 SI LES TEMPS SONT EGAUX
     int res = 0;
 
     //TYPAGE DE V1 ET V2 DANS T1 ET T2
-    struct trains *t1 = (struct trains *)v1;
-    struct trains *t2 = (struct trains *)v2;
+    struct trains *train1 = (struct trains *)elmTrain1;
+    struct trains *train2 = (struct trains *)elmTrain2;
 
     //VARIABLES DE RÉCUPERATION DES TEMPS
     int tempsDepart1;
@@ -331,10 +341,10 @@ int compParTemps(const void *v1, const void *v2)
     int tempsArrivee2;
 
     //AFFECTATION DES DONNÉES AUX VARIABLES
-    getTemps(t1->horaire_depart, &tempsDepart1);
-    getTemps(t1->horaire_arrivee, &tempsArrivee1);
-    getTemps(t2->horaire_depart, &tempsDepart2);
-    getTemps(t2->horaire_arrivee, &tempsArrivee2);
+    getTemps(train1->horaire_depart, &tempsDepart1);
+    getTemps(train1->horaire_arrivee, &tempsArrivee1);
+    getTemps(train2->horaire_depart, &tempsDepart2);
+    getTemps(train2->horaire_arrivee, &tempsArrivee2);
 
     //COMPARAISON DES TEMPS
     if((tempsArrivee1 - tempsDepart1) > (tempsArrivee2 - tempsDepart2)) // ex: 750-650(100) > 850-780 (70)
@@ -348,7 +358,15 @@ int compParTemps(const void *v1, const void *v2)
     return res;
 }
 
-//TRI UN TABLEAU DE TRAIN (*tabTrains) EN FONCTION DU PARAMÈTRE "mode" (prix/temps)
+/**
+ * \fn void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
+ * \brief Tri un tableau de train en fonction du prix ou du temps.
+ *
+ * \param struct trains *tabTrains, le tableau à trier.
+ * \param int tailleTableau, la taille du tableau tabTrains.
+ * \param char* mode, mode = "PRIX" on trie par rapport au prix ou mode = "TEMPS" on trie sur le temps de trajet.
+ * \return void
+ */
 void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
 {
     int index;
@@ -360,7 +378,6 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
         {
             calculePrix(&tabTrains[index]);
         }
-
         //TRI LE TABLEAU DE TRAINS
         qsort(tabTrains, tailleTableau,sizeof(struct trains), compParPrix);
     }
