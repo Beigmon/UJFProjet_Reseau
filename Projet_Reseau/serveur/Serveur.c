@@ -122,8 +122,6 @@ int main(int argc, char **argv)
 					}
 					else
 					{
-						printf("VILLE DEPART : %s\n", villeDepartRecu);
-						printf("VILLE DEPART : %s\n", villeArriveRecu);
 						//ON EST DANS LA DEUXIÈME POSSIBILITÉ (Ville de départ, d'arrivée renseignées ainsi qu'une heure de départ et d'arrivée)																
 						nbTrains = getTrainsWithTimePeriods(villeDepartRecu, villeArriveRecu, HoraireDebutRecu, HoraireFinRecu, ListTrains, donnees, nbLignes);
 					}
@@ -145,14 +143,11 @@ int main(int argc, char **argv)
 					}
 									
 					int index = 0;
-					printf("Avant cpy : %s", message);
 					strcpy(message, "");  // VIDE la chaine
-					printf("Après cpy : %s", message);
 					char trainSousText[MAX];
 					while(ListTrains[index].num_train != 0)
 					{
 						structureVersTxt(ListTrains[index], trainSousText);
-						printf("Train sous text %d: %s",index, trainSousText);
 						strcat(message, trainSousText);
 						index++;
 					}

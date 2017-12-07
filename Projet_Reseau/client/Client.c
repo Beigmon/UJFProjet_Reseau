@@ -52,6 +52,7 @@ void afficherTrains(char* listeTrains)
     tok =  strtok_r(listeTrains, "\n", &saveN);
     printf("\n******************************************************** ");
     printf("\n*************** RÉSULTAT DE LA RECHERCHE *************** ");
+    printf("\n********");
     // BOUCLE TANT QU'IL RESTE UNE LIGNE 
 	while(tok != NULL)
     {	
@@ -63,7 +64,7 @@ void afficherTrains(char* listeTrains)
 		printf("\n********\tHoraire de départ : %s",strtok(NULL, ";"));
 		printf("\n********\tHoraire d'arrivée : %s",strtok(NULL, ";"));
 		printf("\n********\tPrix : %s",strtok(NULL, ";"));
-		printf("\n******** -----------------------------------------------\n");
+		printf("\n******** -----------------------------------------------");
 		//RÉCUPERATION DE LA LIGNE SUIVANTE
 		tok =  strtok_r(NULL, "\n", &saveN);
     }

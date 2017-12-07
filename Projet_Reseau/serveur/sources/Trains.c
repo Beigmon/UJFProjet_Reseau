@@ -187,7 +187,7 @@ int getTrainsWithTimePeriods(char * villeDepart, char * villeArrivee, char * hor
 			}
 		}
 	}
-	return indexTab-1;
+	return indexTab;
 }
 
 /**
@@ -215,7 +215,7 @@ int getAllTrainsWithStartAndArrival(char * villeDepart, char * villeArrivee, str
 			}
 		}
 	}
-	return indexTab-1;
+	return indexTab;
 }
 
 /**
@@ -298,7 +298,7 @@ int compParPrix(const void *v1, const void *v2)
     //RÉCUPÉRATION DES PRIX (DÉJÀ CALCULÉS)
     double prix1 = t1->prix_usuel;
     double prix2 = t2->prix_usuel;
-
+    
     //COMPARAISON DES PRIX
     if(prix1 > prix2)
     {
