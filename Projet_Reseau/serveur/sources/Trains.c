@@ -37,8 +37,8 @@ void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 	char ligne[VALUE];
 	filelinetotxt(ligne, fichierTrain);
 	//printf("LIGNE : %s\n", ligne);
-	const char * REDUC = ACTION_PRIX_STRING[0];
-	const char * SUPPL = ACTION_PRIX_STRING[1];
+	//const char * REDUC = ACTION_PRIX_STRING[0];
+	//const char * SUPPL = ACTION_PRIX_STRING[1];
 
 	tabTrains->num_train = atoi(strtok(ligne, ";"));
 	strcpy(tabTrains->ville_depart,strtok(NULL, ";"));
@@ -48,11 +48,12 @@ void txtVersStructure(FILE* fichierTrain, struct trains *tabTrains)
 	tabTrains->prix_usuel = atof(strtok(NULL, ";"));
 
 	const char * actionPrix = strtok(NULL, ";");
-	if(strcmp(actionPrix, REDUC) == 0)
+	
+	if(strcmp(actionPrix, "REDUC\n") == 0)
 	{
 		tabTrains->evenement = 0;  // REDUC
 	}
-	else if(strcmp(actionPrix, SUPPL) == 0)
+	else if(strcmp(actionPrix, "SUPPL\n") == 0)
 	{
 		tabTrains->evenement = 1;  // SUPPL
 	}
@@ -271,17 +272,22 @@ void structureVersTxt(struct trains train, char* txt)
 void calculePrix(struct trains *train)
 {
 	//REDUC
+	printf("C1\n");
 	double prix = train->prix_usuel;
+	printf("evenement : %d\n", train->evenement);
 	if(train->evenement == 0)
 	{
+		printf("C2\n");
 		prix = prix - (prix * 0.2);
 	}
 	//SUPPL
 	if(train->evenement == 1)
 	{
+		printf("C3\n");
 		prix = prix + (prix * 0.1);
 	}
 	//VIDE
+	printf("C4\n");
 	train->prix_usuel = prix;
 }
 
@@ -355,6 +361,7 @@ void trierTrains(struct trains *tabTrains, int tailleTableau, char* mode)
         //CALCULE LE PRIX DES TRAINS
         for(index = 0; index<tailleTableau;index++)
         {
+			printf("prix2\n");
             calculePrix(&tabTrains[index]);
         }
 

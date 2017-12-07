@@ -23,7 +23,7 @@ typedef enum {
 	VIDE	/*!< VIDE. */
 } Action_prix;
 
-static const char *ACTION_PRIX_STRING[] = { "REDUC", "SUPPL", "VIDE" };
+//static const char *ACTION_PRIX_STRING[] = { "REDUC", "SUPPL", "VIDE" };
 
 /**
  * \struct Str_t
@@ -40,7 +40,7 @@ struct trains {
 	char horaire_depart[6];	/*!< Chaîne avec  caractère null de fin de chaîne. */
 	char horaire_arrivee[6];
 	double prix_usuel;
-	Action_prix evenement;	 
+	int evenement;	 // todo use enum 
 };
 
 #ifndef TRAIN_C
