@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 				
 				while(1)
 				{
-					char message[MAX];
+					char *message = malloc(MAX * sizeof(char));
 					
 					//ON RECOIT LA CHAINE DU CLIENT
 					int nbLus = read(serv_sock, message, MAX);
@@ -88,11 +88,11 @@ int main(int argc, char **argv)
 					}
 					
 					//DECLARATION DES VARIABLES DE STOCKAGE
-					char villeDepartRecu[MAX];
-					char villeArriveRecu[MAX];
-					char HoraireDebutRecu[MAX];
-					char HoraireFinRecu[MAX];
-					char choixTri[MAX];
+					char *villeDepartRecu = malloc(MAX * sizeof(char));
+					char *villeArriveRecu = malloc(MAX * sizeof(char));
+					char *HoraireDebutRecu = malloc(MAX * sizeof(char));
+					char *HoraireFinRecu = malloc(MAX * sizeof(char));
+					char *choixTri = malloc(MAX * sizeof(char));
 					int nbTrains = 0; 
 					
 					//FAIRE LA DECOMPOSITION DE LA CHAINE
@@ -145,17 +145,21 @@ int main(int argc, char **argv)
 					}
 									
 					int index = 0;
+					printf("Avant cpy : %s", message);
 					strcpy(message, "");  // VIDE la chaine
+					printf("Après cpy : %s", message);
 					char trainSousText[MAX];
 					while(ListTrains[index].num_train != 0)
 					{
 						structureVersTxt(ListTrains[index], trainSousText);
+						printf("Train sous text %d: %s",index, trainSousText);
 						strcat(message, trainSousText);
 						index++;
 					}
 					
 					write(serv_sock, message, strlen(message));
 					strcpy(message, "\0");  // VIDE la chaine
+					free(message); free(villeDepartRecu); free(villeArriveRecu); free(HoraireDebutRecu); free(HoraireFinRecu); free(choixTri);
 				}
 				
 				return EXIT_SUCCESS;
