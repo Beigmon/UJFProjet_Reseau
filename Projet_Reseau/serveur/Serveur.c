@@ -75,8 +75,6 @@ int main(int argc, char **argv)
 					//ON RECOIT LA CHAINE DU CLIENT
 					int nbLus = read(serv_sock, message, MAX);
 					
-					printf("Chaine recu par le serveur : %s\n", message);
-					
 					//SI ON LIT RIEN
 					if(nbLus == -1)
 					{
@@ -129,7 +127,6 @@ int main(int argc, char **argv)
 					
 					if(nbTrains != 0 && ListTrains[0].num_train != 0)
 					{
-						printf("\nJEPASEDANsLEIF");
 						//LE TRI
 						switch(atoi(choixTri))
 						{
@@ -154,14 +151,11 @@ int main(int argc, char **argv)
 							structureVersTxt(ListTrains[index], trainSousText);
 							strcat(message, trainSousText);
 						}
-						printf("\n%s", message);
 						write(serv_sock, message, strlen(message));
 					}
 					else
 					{
-						printf("\nJEPASsEDANSELSeEKSJLKFJ");
 						// ERREUR rien à renvoyer
-						printf("\n%s", message);
 						write(serv_sock, "Aucun train trouvé.;Inconnu;Inconnu;Inconnu;Inconnu;Inconnu", strlen("Aucun train trouvé.;Inconnu;Inconnu;Inconnu;Inconnu;Inconnu"));
 					}
 					strcpy(message, "");  // VIDE la chaine
