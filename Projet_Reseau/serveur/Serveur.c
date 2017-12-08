@@ -148,7 +148,7 @@ int main(int argc, char **argv)
 							structureVersTxt(ListTrains[index], trainSousText);
 							strcat(message, trainSousText);
 						}
-						write(serv_sock, message, strlen(message));
+						write(serv_sock, message, strlen(message)-1);
 					}
 					else
 					{
