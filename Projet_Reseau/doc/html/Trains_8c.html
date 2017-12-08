@@ -1,0 +1,756 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet consultation de trains: RÃ©fÃ©rence du fichier Trains.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet consultation de trains
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- GÃ©nÃ©rÃ© par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_17197e2a5901f70601536f515e8d47d9.html">serveur</a></li><li class="navelem"><a class="el" href="dir_60c804fded23a45d56f6ac5c71f22e2d.html">sources</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">RÃ©fÃ©rence du fichier Trains.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Gestion des Trains.  
+<a href="#details">Plus de dÃ©tails...</a></p>
+<div class="textblock"><code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/socket.h&gt;</code><br />
+<code>#include &lt;arpa/inet.h&gt;</code><br />
+<code>#include &lt;netinet/in.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="Trains_8h_source.html">../headers/Trains.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4cf0540a97f4d993dc2fb24f98ac1d9e"><td class="memItemLeft" align="right" valign="top"><a id="a4cf0540a97f4d993dc2fb24f98ac1d9e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TRAIN_C</b></td></tr>
+<tr class="separator:a4cf0540a97f4d993dc2fb24f98ac1d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0b03826c8f7cc324ac2db0ada2dce0a"><td class="memItemLeft" align="right" valign="top"><a id="aa0b03826c8f7cc324ac2db0ada2dce0a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VALUE</b>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:aa0b03826c8f7cc324ac2db0ada2dce0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a13a69550fab40014f94296235db77b6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a13a69550fab40014f94296235db77b6d">txtVersStructure</a> (FILE *fichierTrain, struct <a class="el" href="structtrains.html">trains</a> *tabTrains)</td></tr>
+<tr class="memdesc:a13a69550fab40014f94296235db77b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de calcul du nombre de lignes d'un fichier de racine filename.  <a href="#a13a69550fab40014f94296235db77b6d">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a13a69550fab40014f94296235db77b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b2332f67d4ac89f801e4e21af404020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a6b2332f67d4ac89f801e4e21af404020">filelinetotxt</a> (char *ligne, FILE *fichier_train)</td></tr>
+<tr class="memdesc:a6b2332f67d4ac89f801e4e21af404020"><td class="mdescLeft">&#160;</td><td class="mdescRight">ProcÃ©dure transmettant la ligne actuelle du fichier fichier_train Ã  la chaÃ®ne de caractÃ¨res ligne.  <a href="#a6b2332f67d4ac89f801e4e21af404020">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a6b2332f67d4ac89f801e4e21af404020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ef117bd795b66f070fd52abe39902d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#ab3ef117bd795b66f070fd52abe39902d">nb_line_file</a> (char *filename)</td></tr>
+<tr class="memdesc:ab3ef117bd795b66f070fd52abe39902d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de calcul du nombre de lignes d'un fichier de racine filename.  <a href="#ab3ef117bd795b66f070fd52abe39902d">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:ab3ef117bd795b66f070fd52abe39902d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b27f80a9452464f8c18c11e16056ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a> (char *temps, int *res)</td></tr>
+<tr class="memdesc:a40b27f80a9452464f8c18c11e16056ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procédure adaptant une heure en chaîne de caractère temps dans un entier res de la forme "00:00" à l'entier 0000.  <a href="#a40b27f80a9452464f8c18c11e16056ad">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a40b27f80a9452464f8c18c11e16056ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592f31c159c1361653dbfa61a48d467c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a592f31c159c1361653dbfa61a48d467c">getOneTrainWithStartArrivalAndTime</a> (char *villeDepart, char *villeArrivee, char *horaireDebut, struct <a class="el" href="structtrains.html">trains</a> *train, struct <a class="el" href="structtrains.html">trains</a> *tabTrains, int nbLignes)</td></tr>
+<tr class="memdesc:a592f31c159c1361653dbfa61a48d467c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ProcÃ©dure associant un objet struct trains train Ã  un des Ã©lÃ©ment d'un tableau d'objets struct trains tabTrains en fonction d'une ville de dÃ©part, d'arrivÃ©e et un horaire.  <a href="#a592f31c159c1361653dbfa61a48d467c">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a592f31c159c1361653dbfa61a48d467c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b1f7cc64f0a425d9f0247dc04a17c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a78b1f7cc64f0a425d9f0247dc04a17c2">getTrainsWithTimePeriods</a> (char *villeDepart, char *villeArrivee, char *horaireDebut, char *horaireFin, struct <a class="el" href="structtrains.html">trains</a> *ListTrains, struct <a class="el" href="structtrains.html">trains</a> *tabTrains, int nbLignes)</td></tr>
+<tr class="memdesc:a78b1f7cc64f0a425d9f0247dc04a17c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">ProcÃ©dure associant un tableau d'objets struct trains train Ã  des Ã©lÃ©ments d'un tableau d'objets struct trains tabTrains en fonction d'une ville de dÃ©part, d'arrivÃ©e et une tranche horaire(dÃ©but, fin).  <a href="#a78b1f7cc64f0a425d9f0247dc04a17c2">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a78b1f7cc64f0a425d9f0247dc04a17c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0e2c21afc41c5cc0f5903530ea5205"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#aff0e2c21afc41c5cc0f5903530ea5205">getAllTrainsWithStartAndArrival</a> (char *villeDepart, char *villeArrivee, struct <a class="el" href="structtrains.html">trains</a> *ListTrains, struct <a class="el" href="structtrains.html">trains</a> *tabTrains, int nbLignes)</td></tr>
+<tr class="memdesc:aff0e2c21afc41c5cc0f5903530ea5205"><td class="mdescLeft">&#160;</td><td class="mdescRight">ProcÃ©dure associant un tableau d'objets struct trains train Ã  tous les Ã©lÃ©ments du tableau d'objets struct trains tabTrains concordant Ã  une ville de dÃ©part et d'arrivÃ©e.  <a href="#aff0e2c21afc41c5cc0f5903530ea5205">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:aff0e2c21afc41c5cc0f5903530ea5205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e454205ce7593587f0a0ac8037921a4"><td class="memItemLeft" align="right" valign="top"><a id="a9e454205ce7593587f0a0ac8037921a4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>structureVersTxt</b> (struct <a class="el" href="structtrains.html">trains</a> train, char *txt)</td></tr>
+<tr class="separator:a9e454205ce7593587f0a0ac8037921a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33fbf03b042575fdf20f3b5549c82317"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a33fbf03b042575fdf20f3b5549c82317">calculePrix</a> (struct <a class="el" href="structtrains.html">trains</a> *train)</td></tr>
+<tr class="memdesc:a33fbf03b042575fdf20f3b5549c82317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule le prix d'un billet de train selon sa rÃ©duction (20%) ou son augmentation (10%).  <a href="#a33fbf03b042575fdf20f3b5549c82317">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a33fbf03b042575fdf20f3b5549c82317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9339d5949ffd29d5657c0c2274e1fc20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a9339d5949ffd29d5657c0c2274e1fc20">compParPrix</a> (const void *elmTrain1, const void *elmTrain2)</td></tr>
+<tr class="memdesc:a9339d5949ffd29d5657c0c2274e1fc20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de comparaison par prix croissant.  <a href="#a9339d5949ffd29d5657c0c2274e1fc20">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a9339d5949ffd29d5657c0c2274e1fc20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f5f8266744559bc4b9e0d5a6d24756"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#ab4f5f8266744559bc4b9e0d5a6d24756">compParTemps</a> (const void *elmTrain1, const void *elmTrain2)</td></tr>
+<tr class="memdesc:ab4f5f8266744559bc4b9e0d5a6d24756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de comparaison par prix croissant.  <a href="#ab4f5f8266744559bc4b9e0d5a6d24756">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:ab4f5f8266744559bc4b9e0d5a6d24756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a437d3ae7919583f0b626cae574b0f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Trains_8c.html#a4a437d3ae7919583f0b626cae574b0f5">trierTrains</a> (struct <a class="el" href="structtrains.html">trains</a> *tabTrains, int tailleTableau, char *mode)</td></tr>
+<tr class="memdesc:a4a437d3ae7919583f0b626cae574b0f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tri un tableau de train en fonction du prix ou du temps.  <a href="#a4a437d3ae7919583f0b626cae574b0f5">Plus de dÃ©tails...</a><br /></td></tr>
+<tr class="separator:a4a437d3ae7919583f0b626cae574b0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description dÃ©taillÃ©e</h2>
+<div class="textblock"><p>Gestion des Trains. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Florian PIGNARD &amp; Jonathan MONBEIG &amp; Mathieu CLUSEL &amp; Louis REYNAUD </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>5 décembre 2017 </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a33fbf03b042575fdf20f3b5549c82317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33fbf03b042575fdf20f3b5549c82317">&#9670;&nbsp;</a></span>calculePrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void calculePrix </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>train</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcule le prix d'un billet de train selon sa rÃ©duction (20%) ou son augmentation (10%). </p>
+<p>Calcule le prix d'un billet de train selon sa réduction (20%) ou son augmentation (10%).</p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">struct</td><td>trains *train, un train. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;{</div><div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="comment">//REDUC</span></div><div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keywordtype">double</span> prix = train-&gt;<a class="code" href="structtrains.html#a6227beccab1036328af482c1c9c03a57">prix_usuel</a>;</div><div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keywordflow">if</span>(train-&gt;<a class="code" href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">evenement</a> == 0)</div><div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    {</div><div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        prix = prix - (prix * 0.2);</div><div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    }</div><div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="comment">//SUPPL</span></div><div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordflow">if</span>(train-&gt;<a class="code" href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">evenement</a> == 1)</div><div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    {</div><div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        prix = prix + (prix * 0.1);</div><div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    }</div><div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="comment">//VIDE</span></div><div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    train-&gt;<a class="code" href="structtrains.html#a6227beccab1036328af482c1c9c03a57">prix_usuel</a> = prix;</div><div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div><div class="ttc" id="structtrains_html_af22a66f11db0312fb9426acdbae9eb0d"><div class="ttname"><a href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">trains::evenement</a></div><div class="ttdeci">int evenement</div><div class="ttdef"><b>Definition:</b> Trains.h:37</div></div>
+<div class="ttc" id="structtrains_html_a6227beccab1036328af482c1c9c03a57"><div class="ttname"><a href="structtrains.html#a6227beccab1036328af482c1c9c03a57">trains::prix_usuel</a></div><div class="ttdeci">double prix_usuel</div><div class="ttdef"><b>Definition:</b> Trains.h:36</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9339d5949ffd29d5657c0c2274e1fc20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9339d5949ffd29d5657c0c2274e1fc20">&#9670;&nbsp;</a></span>compParPrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int compParPrix </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>elmTrain1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>elmTrain2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de comparaison par prix croissant. </p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>void *elmTrain1, un train. </td></tr>
+    <tr><td class="paramname">const</td><td>void *elmTrain2, un train. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, si la fontion revoi 1 elmTrain1 est plus chÃ¨re que elmTrain2 sinon on a -1 si elmTrain1 est moins chÃ¨re que elmTrain2 sinon on a 0.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>void *elmTrain1, un train. </td></tr>
+    <tr><td class="paramname">const</td><td>void *elmTrain2, un train. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, si la fontion revoi 1 elmTrain1 est plus chère que elmTrain2 sinon on a -1 si elmTrain1 est moins chère que elmTrain2 sinon on a 0. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;{</div><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="comment">//RES = 0 SI LES PRIX SONT EGAUX</span></div><div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">int</span> res = 0;</div><div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="comment">//TYPAGE DE V1 ET V2 DANS T1 ET T2</span></div><div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *train1 = (<span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *)elmTrain1;</div><div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *train2 = (<span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *)elmTrain2;</div><div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    </div><div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="comment">//RÉCUPÉRATION DES PRIX (DÉJÀ CALCULÉS)</span></div><div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordtype">double</span> prix1 = train1-&gt;<a class="code" href="structtrains.html#a6227beccab1036328af482c1c9c03a57">prix_usuel</a>;</div><div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordtype">double</span> prix2 = train2-&gt;<a class="code" href="structtrains.html#a6227beccab1036328af482c1c9c03a57">prix_usuel</a>;</div><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    </div><div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="comment">//COMPARAISON DES PRIX</span></div><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="keywordflow">if</span>(prix1 &gt; prix2)</div><div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    {</div><div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        res = 1;</div><div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    }</div><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(prix1 &lt; prix2)</div><div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    {</div><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        res = -1;</div><div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    }</div><div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;}</div><div class="ttc" id="structtrains_html"><div class="ttname"><a href="structtrains.html">trains</a></div><div class="ttdoc">Des information pour consulter des trains. </div><div class="ttdef"><b>Definition:</b> Trains.h:30</div></div>
+<div class="ttc" id="structtrains_html_a6227beccab1036328af482c1c9c03a57"><div class="ttname"><a href="structtrains.html#a6227beccab1036328af482c1c9c03a57">trains::prix_usuel</a></div><div class="ttdeci">double prix_usuel</div><div class="ttdef"><b>Definition:</b> Trains.h:36</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab4f5f8266744559bc4b9e0d5a6d24756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f5f8266744559bc4b9e0d5a6d24756">&#9670;&nbsp;</a></span>compParTemps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int compParTemps </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>elmTrain1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>elmTrain2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de comparaison par prix croissant. </p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>void *elmTrain1, un train. </td></tr>
+    <tr><td class="paramname">const</td><td>void *elmTrain2, un train. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, si la fontion revoi 1 elmTrain1 est plus tard que elmTrain2 sinon on a -1 si elmTrain1 est plus tÃ´t que elmTrain2 sinon on a 0 soit il arrive Ã  la mÃªme heure.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">const</td><td>void *elmTrain1, un train. </td></tr>
+    <tr><td class="paramname">const</td><td>void *elmTrain2, un train. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, si la fontion revoi 1 elmTrain1 est plus tard que elmTrain2 sinon on a -1 si elmTrain1 est plus tôt que elmTrain2 sinon on a 0 soit il arrive à la même heure. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;{</div><div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="comment">//RES = 0 SI LES TEMPS SONT EGAUX</span></div><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordtype">int</span> res = 0;</div><div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div><div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="comment">//TYPAGE DE V1 ET V2 DANS T1 ET T2</span></div><div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *train1 = (<span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *)elmTrain1;</div><div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *train2 = (<span class="keyword">struct </span><a class="code" href="structtrains.html">trains</a> *)elmTrain2;</div><div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div><div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="comment">//VARIABLES DE RÉCUPERATION DES TEMPS</span></div><div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keywordtype">int</span> tempsDepart1;</div><div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordtype">int</span> tempsArrivee1;</div><div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordtype">int</span> tempsDepart2;</div><div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keywordtype">int</span> tempsArrivee2;</div><div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div><div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="comment">//AFFECTATION DES DONNÉES AUX VARIABLES</span></div><div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(train1-&gt;<a class="code" href="structtrains.html#a4257d29206232c54585f72ba61eae250">horaire_depart</a>, &amp;tempsDepart1);</div><div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(train1-&gt;<a class="code" href="structtrains.html#a8782f1d7a0e12cda0f631c68d8806b76">horaire_arrivee</a>, &amp;tempsArrivee1);</div><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(train2-&gt;<a class="code" href="structtrains.html#a4257d29206232c54585f72ba61eae250">horaire_depart</a>, &amp;tempsDepart2);</div><div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(train2-&gt;<a class="code" href="structtrains.html#a8782f1d7a0e12cda0f631c68d8806b76">horaire_arrivee</a>, &amp;tempsArrivee2);</div><div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div><div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="comment">//COMPARAISON DES TEMPS</span></div><div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">if</span>((tempsArrivee1 - tempsDepart1) &gt; (tempsArrivee2 - tempsDepart2)) <span class="comment">// ex: 750-650(100) &gt; 850-780 (70)</span></div><div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    {</div><div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        res = 1;</div><div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    }</div><div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordflow">if</span>((tempsArrivee1 - tempsDepart1) &lt; (tempsArrivee2 - tempsDepart2)) <span class="comment">// ex: 850-780 (70) &lt; 750-650(100)</span></div><div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    {</div><div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        res = -1;</div><div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    }</div><div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;}</div><div class="ttc" id="structtrains_html_a4257d29206232c54585f72ba61eae250"><div class="ttname"><a href="structtrains.html#a4257d29206232c54585f72ba61eae250">trains::horaire_depart</a></div><div class="ttdeci">char horaire_depart[6]</div><div class="ttdef"><b>Definition:</b> Trains.h:34</div></div>
+<div class="ttc" id="structtrains_html_a8782f1d7a0e12cda0f631c68d8806b76"><div class="ttname"><a href="structtrains.html#a8782f1d7a0e12cda0f631c68d8806b76">trains::horaire_arrivee</a></div><div class="ttdeci">char horaire_arrivee[6]</div><div class="ttdef"><b>Definition:</b> Trains.h:35</div></div>
+<div class="ttc" id="structtrains_html"><div class="ttname"><a href="structtrains.html">trains</a></div><div class="ttdoc">Des information pour consulter des trains. </div><div class="ttdef"><b>Definition:</b> Trains.h:30</div></div>
+<div class="ttc" id="Trains_8c_html_a40b27f80a9452464f8c18c11e16056ad"><div class="ttname"><a href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a></div><div class="ttdeci">void getTemps(char *temps, int *res)</div><div class="ttdoc">Procédure adaptant une heure en chaîne de caractère temps dans un entier res de la forme &quot;00:00&quot; à l&amp;#39;enti...</div><div class="ttdef"><b>Definition:</b> Trains.c:104</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6b2332f67d4ac89f801e4e21af404020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b2332f67d4ac89f801e4e21af404020">&#9670;&nbsp;</a></span>filelinetotxt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void filelinetotxt </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ligne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fichier_train</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ProcÃ©dure transmettant la ligne actuelle du fichier fichier_train Ã  la chaÃ®ne de caractÃ¨res ligne. </p>
+<p>Procédure transmettant la ligne actuelle du fichier fichier_train à la chaîne de caractères ligne.</p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ligne,chaine</td><td>de caractÃ¨res, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">fichier_train,fichier</td><td>parcouru, ne peut Ãªtre NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ligne,chaine</td><td>de caractères, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">fichier_train,fichier</td><td>parcouru, ne peut être NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    fgets(ligne, VALUE, fichier_train);</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="aff0e2c21afc41c5cc0f5903530ea5205"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0e2c21afc41c5cc0f5903530ea5205">&#9670;&nbsp;</a></span>getAllTrainsWithStartAndArrival()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getAllTrainsWithStartAndArrival </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>villeDepart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>villeArrivee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>ListTrains</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>tabTrains</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbLignes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ProcÃ©dure associant un tableau d'objets struct trains train Ã  tous les Ã©lÃ©ments du tableau d'objets struct trains tabTrains concordant Ã  une ville de dÃ©part et d'arrivÃ©e. </p>
+<p>Procédure associant un tableau d'objets struct trains train à tous les éléments du tableau d'objets struct trains tabTrains concordant à une ville de départ et d'arrivée.</p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">villeDepart,chaÃ®ne</td><td>de caractÃ¨re contenant la ville de dÃ©part, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">villeArrivee,chaÃ®ne</td><td>de caractÃ¨re contenant la ville d'arrivÃ©e, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">ListTrains,objet</td><td>de type struct trains contenant le rÃ©sultat de la procÃ©dure, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">tabTrains,tableau</td><td>d'objets de type struct trains contenant les donnÃ©es du programme, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">nbLignes,nombre</td><td>de lignes du tableau tabTrains, ne peut Ãªtre NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, le nombre de trains revoyÃ©s.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">villeDepart,chaîne</td><td>de caractère contenant la ville de départ, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">villeArrivee,chaîne</td><td>de caractère contenant la ville d'arrivée, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">ListTrains,objet</td><td>de type struct trains contenant le résultat de la procédure, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">tabTrains,tableau</td><td>d'objets de type struct trains contenant les données du programme, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">nbLignes,nombre</td><td>de lignes du tableau tabTrains, ne peut être NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, le nombre de trains revoyés. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;{</div><div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordtype">int</span> index, indexTab = 0;</div><div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div><div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">for</span>(index = 0; index &lt; nbLignes; index++)</div><div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    {</div><div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">if</span> (strcmp(tabTrains[index].<a class="code" href="structtrains.html#a90a9791b7c6a34708f192103ff754295">ville_depart</a>, villeDepart) == 0)</div><div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        {</div><div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">if</span> (strcmp(tabTrains[index].<a class="code" href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">ville_arrivee</a>, villeArrivee) == 0)</div><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            {</div><div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                ListTrains[indexTab] = tabTrains[index];</div><div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                indexTab++;</div><div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            }</div><div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        }</div><div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div><div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordflow">return</span> indexTab;</div><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div><div class="ttc" id="structtrains_html_a391e1c45efe8d53a2c855be978c597b5"><div class="ttname"><a href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">trains::ville_arrivee</a></div><div class="ttdeci">char ville_arrivee[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:33</div></div>
+<div class="ttc" id="structtrains_html_a90a9791b7c6a34708f192103ff754295"><div class="ttname"><a href="structtrains.html#a90a9791b7c6a34708f192103ff754295">trains::ville_depart</a></div><div class="ttdeci">char ville_depart[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:32</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a592f31c159c1361653dbfa61a48d467c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a592f31c159c1361653dbfa61a48d467c">&#9670;&nbsp;</a></span>getOneTrainWithStartArrivalAndTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getOneTrainWithStartArrivalAndTime </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>villeDepart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>villeArrivee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>horaireDebut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>train</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>tabTrains</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbLignes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ProcÃ©dure associant un objet struct trains train Ã  un des Ã©lÃ©ment d'un tableau d'objets struct trains tabTrains en fonction d'une ville de dÃ©part, d'arrivÃ©e et un horaire. </p>
+<p>Procédure associant un objet struct trains train à un des élément d'un tableau d'objets struct trains tabTrains en fonction d'une ville de départ, d'arrivée et un horaire.</p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">villeDepart,chaÃ®ne</td><td>de caractÃ¨re contenant la ville de dÃ©part, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">villeArrivee,chaÃ®ne</td><td>de caractÃ¨re contenant la ville d'arrivÃ©e, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">horaireDebut,chaÃ®ne</td><td>de caractÃ¨re contenant l'horaire, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">train,objet</td><td>de type struct trains contenant le rÃ©sultat de la procÃ©dure, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">tabTrains,tableau</td><td>d'objets de type struct trains contenant les donnÃ©es du programme, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">nbLignes,nombre</td><td>de lignes du tableau tabTrains, ne peut Ãªtre NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">villeDepart,chaîne</td><td>de caractère contenant la ville de départ, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">villeArrivee,chaîne</td><td>de caractère contenant la ville d'arrivée, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">horaireDebut,chaîne</td><td>de caractère contenant l'horaire, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">train,objet</td><td>de type struct trains contenant le résultat de la procédure, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">tabTrains,tableau</td><td>d'objets de type struct trains contenant les données du programme, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">nbLignes,nombre</td><td>de lignes du tableau tabTrains, ne peut être NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">int</span> index, horaire = 2360;  <span class="comment">// Valeur Max 23:59 -&gt; 2359</span></div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">for</span>(index = 0; index &lt; nbLignes; index++)</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    {</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">if</span> (strcmp(tabTrains[index].<a class="code" href="structtrains.html#a90a9791b7c6a34708f192103ff754295">ville_depart</a>, villeDepart) == 0)</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        {</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordflow">if</span> (strcmp(tabTrains[index].<a class="code" href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">ville_arrivee</a>, villeArrivee) == 0)</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            {</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                <span class="keywordtype">int</span> bestFoundH, currentH;</div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(tabTrains[index].<a class="code" href="structtrains.html#a4257d29206232c54585f72ba61eae250">horaire_depart</a>, &amp;bestFoundH);</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(horaireDebut, &amp;currentH);</div><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                <span class="keywordflow">if</span> (bestFoundH &gt;= currentH)</div><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                {</div><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                    <span class="keywordflow">if</span>(horaire &gt; bestFoundH)</div><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                    {</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                        <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(tabTrains[index].<a class="code" href="structtrains.html#a4257d29206232c54585f72ba61eae250">horaire_depart</a>, &amp;horaire);</div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                        *train = tabTrains[index];</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    }</div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                }</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            }</div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        }</div><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div><div class="ttc" id="structtrains_html_a4257d29206232c54585f72ba61eae250"><div class="ttname"><a href="structtrains.html#a4257d29206232c54585f72ba61eae250">trains::horaire_depart</a></div><div class="ttdeci">char horaire_depart[6]</div><div class="ttdef"><b>Definition:</b> Trains.h:34</div></div>
+<div class="ttc" id="structtrains_html_a391e1c45efe8d53a2c855be978c597b5"><div class="ttname"><a href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">trains::ville_arrivee</a></div><div class="ttdeci">char ville_arrivee[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:33</div></div>
+<div class="ttc" id="structtrains_html_a90a9791b7c6a34708f192103ff754295"><div class="ttname"><a href="structtrains.html#a90a9791b7c6a34708f192103ff754295">trains::ville_depart</a></div><div class="ttdeci">char ville_depart[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:32</div></div>
+<div class="ttc" id="Trains_8c_html_a40b27f80a9452464f8c18c11e16056ad"><div class="ttname"><a href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a></div><div class="ttdeci">void getTemps(char *temps, int *res)</div><div class="ttdoc">Procédure adaptant une heure en chaîne de caractère temps dans un entier res de la forme &quot;00:00&quot; à l&amp;#39;enti...</div><div class="ttdef"><b>Definition:</b> Trains.c:104</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a40b27f80a9452464f8c18c11e16056ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b27f80a9452464f8c18c11e16056ad">&#9670;&nbsp;</a></span>getTemps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getTemps </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>temps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Procédure adaptant une heure en chaîne de caractère temps dans un entier res de la forme "00:00" à l'entier 0000. </p>
+<p>ProcÃ©dure adaptant une heure en chaÃ®ne de caractÃ¨re temps dans un entier res de la forme "00:00" Ã  l'entier 0000.</p>
+<p>void <a class="el" href="Trains_8h.html#a0134b31ff9fb8855c80586843be22a21" title="ProcÃ©dure adaptant une heure en chaÃ®ne de caractÃ¨re temps dans un entier res de la forme &quot;00:00&quot; Ã  l&#39;...">getTemps(char * temps, int * res)</a> </p><dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temps</td><td>Chaîne de caractère contenant l'heure, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">res,entier</td><td>contenant l'heure sous la forme 2359 pour "23:59", ne peut être NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">char</span> *t = temps;</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">char</span> * pEnd;</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">int</span> heure = strtol(t, &amp;pEnd, 10);</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">int</span> minute = strtol (pEnd+1,&amp;pEnd,10);</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    *res = (heure*100+minute);</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a78b1f7cc64f0a425d9f0247dc04a17c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78b1f7cc64f0a425d9f0247dc04a17c2">&#9670;&nbsp;</a></span>getTrainsWithTimePeriods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getTrainsWithTimePeriods </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>villeDepart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>villeArrivee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>horaireDebut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>horaireFin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>ListTrains</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>tabTrains</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbLignes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ProcÃ©dure associant un tableau d'objets struct trains train Ã  des Ã©lÃ©ments d'un tableau d'objets struct trains tabTrains en fonction d'une ville de dÃ©part, d'arrivÃ©e et une tranche horaire(dÃ©but, fin). </p>
+<p>Procédure associant un tableau d'objets struct trains train à des éléments d'un tableau d'objets struct trains tabTrains en fonction d'une ville de départ, d'arrivée et une tranche horaire(début, fin).</p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">villeDepart,chaÃ®ne</td><td>de caractÃ¨re contenant la ville de dÃ©part, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">villeArrivee,chaÃ®ne</td><td>de caractÃ¨re contenant la ville d'arrivÃ©e, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">horaireDebut,chaÃ®ne</td><td>de caractÃ¨re contenant l'horaire, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">horaireFin,chaÃ®ne</td><td>de caractÃ¨re contenant l'horaire, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">train,objet</td><td>de type struct trains contenant le rÃ©sultat de la procÃ©dure, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">tabTrains,tableau</td><td>d'objets de type struct trains contenant les donnÃ©es du programme, ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">nbLignes,nombre</td><td>de lignes du tableau tabTrains, ne peut Ãªtre NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, le nombre de trains revoyÃ©s.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">villeDepart,chaîne</td><td>de caractère contenant la ville de départ, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">villeArrivee,chaîne</td><td>de caractère contenant la ville d'arrivée, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">horaireDebut,chaîne</td><td>de caractère contenant l'horaire, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">horaireFin,chaîne</td><td>de caractère contenant l'horaire, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">train,objet</td><td>de type struct trains contenant le résultat de la procédure, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">tabTrains,tableau</td><td>d'objets de type struct trains contenant les données du programme, ne peut être NULL. </td></tr>
+    <tr><td class="paramname">nbLignes,nombre</td><td>de lignes du tableau tabTrains, ne peut être NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int, le nombre de trains revoyés. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordtype">int</span> index, indexTab = 0;</div><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">int</span> hDeb; <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(horaireDebut, &amp;hDeb);</div><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">int</span> hFin; <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(horaireFin, &amp;hFin);</div><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">for</span>(index = 0; index &lt; nbLignes; index++)</div><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    {</div><div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">if</span> (strcmp(tabTrains[index].<a class="code" href="structtrains.html#a90a9791b7c6a34708f192103ff754295">ville_depart</a>, villeDepart) == 0)</div><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        {</div><div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <span class="keywordflow">if</span> (strcmp(tabTrains[index].<a class="code" href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">ville_arrivee</a>, villeArrivee) == 0)</div><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            {</div><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordtype">int</span> currentDeb;</div><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <a class="code" href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a>(tabTrains[index].<a class="code" href="structtrains.html#a4257d29206232c54585f72ba61eae250">horaire_depart</a>, &amp;currentDeb);</div><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div><div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <span class="keywordflow">if</span> (currentDeb&gt;=hDeb &amp;&amp; currentDeb&lt;=hFin)</div><div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                {</div><div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                    ListTrains[indexTab] = tabTrains[index];</div><div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    indexTab++;</div><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                }</div><div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            }</div><div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        }</div><div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">return</span> indexTab;</div><div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;}</div><div class="ttc" id="structtrains_html_a4257d29206232c54585f72ba61eae250"><div class="ttname"><a href="structtrains.html#a4257d29206232c54585f72ba61eae250">trains::horaire_depart</a></div><div class="ttdeci">char horaire_depart[6]</div><div class="ttdef"><b>Definition:</b> Trains.h:34</div></div>
+<div class="ttc" id="structtrains_html_a391e1c45efe8d53a2c855be978c597b5"><div class="ttname"><a href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">trains::ville_arrivee</a></div><div class="ttdeci">char ville_arrivee[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:33</div></div>
+<div class="ttc" id="structtrains_html_a90a9791b7c6a34708f192103ff754295"><div class="ttname"><a href="structtrains.html#a90a9791b7c6a34708f192103ff754295">trains::ville_depart</a></div><div class="ttdeci">char ville_depart[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:32</div></div>
+<div class="ttc" id="Trains_8c_html_a40b27f80a9452464f8c18c11e16056ad"><div class="ttname"><a href="Trains_8c.html#a40b27f80a9452464f8c18c11e16056ad">getTemps</a></div><div class="ttdeci">void getTemps(char *temps, int *res)</div><div class="ttdoc">Procédure adaptant une heure en chaîne de caractère temps dans un entier res de la forme &quot;00:00&quot; à l&amp;#39;enti...</div><div class="ttdef"><b>Definition:</b> Trains.c:104</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab3ef117bd795b66f070fd52abe39902d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3ef117bd795b66f070fd52abe39902d">&#9670;&nbsp;</a></span>nb_line_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nb_line_file </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de calcul du nombre de lignes d'un fichier de racine filename. </p>
+<p>int <a class="el" href="Trains_8c.html#ab3ef117bd795b66f070fd52abe39902d" title="Fonction de calcul du nombre de lignes d&#39;un fichier de racine filename. ">nb_line_file(char * filename)</a> </p><dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename,racine</td><td>du fichier, ne peut être NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>nb_line, nombre de lignes du fichier de racine filename. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> c, nb_line = 0;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    FILE *fichier_train = fopen(filename, <span class="stringliteral">&quot;r&quot;</span>);</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">/* voici ma boucle */</span></div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">while</span> ((c = getc(fichier_train)) != EOF){</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;\n&#39;</span>)</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            ++nb_line;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    fclose(fichier_train);</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">return</span> nb_line;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a4a437d3ae7919583f0b626cae574b0f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a437d3ae7919583f0b626cae574b0f5">&#9670;&nbsp;</a></span>trierTrains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void trierTrains </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>tabTrains</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tailleTableau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tri un tableau de train en fonction du prix ou du temps. </p>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">struct</td><td>trains *tabTrains, le tableau Ã  trier. </td></tr>
+    <tr><td class="paramname">int</td><td>tailleTableau, la taille du tableau tabTrains. </td></tr>
+    <tr><td class="paramname">char*</td><td>mode, mode = "PRIX" on trie par rapport au prix ou mode = "TEMPS" on trie sur le temps de trajet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">struct</td><td>trains *tabTrains, le tableau à trier. </td></tr>
+    <tr><td class="paramname">int</td><td>tailleTableau, la taille du tableau tabTrains. </td></tr>
+    <tr><td class="paramname">char*</td><td>mode, mode = "PRIX" on trie par rapport au prix ou mode = "TEMPS" on trie sur le temps de trajet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void </dd></dl>
+<div class="fragment"><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;{</div><div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keywordtype">int</span> index;</div><div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="comment">//TRI EN PAR PRIX CROISSANT</span></div><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordflow">if</span>(strcmp(mode, <span class="stringliteral">&quot;prix&quot;</span>) == 0)</div><div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    {</div><div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="comment">//CALCULE LE PRIX DES TRAINS</span></div><div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <span class="keywordflow">for</span>(index = 0; index&lt;tailleTableau;index++)</div><div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        {</div><div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            <a class="code" href="Trains_8c.html#a33fbf03b042575fdf20f3b5549c82317">calculePrix</a>(&amp;tabTrains[index]);</div><div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        }</div><div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="comment">//TRI LE TABLEAU DE TRAINS</span></div><div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        qsort(tabTrains, tailleTableau,<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structtrains.html">trains</a>), <a class="code" href="Trains_8c.html#a9339d5949ffd29d5657c0c2274e1fc20">compParPrix</a>);</div><div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    }</div><div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="comment">//TRI EN PAR DUREE CROISSANTE</span></div><div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(strcmp(mode, <span class="stringliteral">&quot;temps&quot;</span>) == 0)</div><div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    {</div><div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="comment">//TRI LE TABLEAU DE TRAINS</span></div><div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        qsort(tabTrains, tailleTableau,<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structtrains.html">trains</a>), <a class="code" href="Trains_8c.html#ab4f5f8266744559bc4b9e0d5a6d24756">compParTemps</a>);</div><div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    }</div><div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;}</div><div class="ttc" id="Trains_8c_html_a33fbf03b042575fdf20f3b5549c82317"><div class="ttname"><a href="Trains_8c.html#a33fbf03b042575fdf20f3b5549c82317">calculePrix</a></div><div class="ttdeci">void calculePrix(struct trains *train)</div><div class="ttdoc">Calcule le prix d&amp;#39;un billet de train selon sa rÃ©duction (20%) ou son augmentation (10%)...</div><div class="ttdef"><b>Definition:</b> Trains.c:271</div></div>
+<div class="ttc" id="structtrains_html"><div class="ttname"><a href="structtrains.html">trains</a></div><div class="ttdoc">Des information pour consulter des trains. </div><div class="ttdef"><b>Definition:</b> Trains.h:30</div></div>
+<div class="ttc" id="Trains_8c_html_a9339d5949ffd29d5657c0c2274e1fc20"><div class="ttname"><a href="Trains_8c.html#a9339d5949ffd29d5657c0c2274e1fc20">compParPrix</a></div><div class="ttdeci">int compParPrix(const void *elmTrain1, const void *elmTrain2)</div><div class="ttdoc">Fonction de comparaison par prix croissant. </div><div class="ttdef"><b>Definition:</b> Trains.c:296</div></div>
+<div class="ttc" id="Trains_8c_html_ab4f5f8266744559bc4b9e0d5a6d24756"><div class="ttname"><a href="Trains_8c.html#ab4f5f8266744559bc4b9e0d5a6d24756">compParTemps</a></div><div class="ttdeci">int compParTemps(const void *elmTrain1, const void *elmTrain2)</div><div class="ttdoc">Fonction de comparaison par prix croissant. </div><div class="ttdef"><b>Definition:</b> Trains.c:328</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a13a69550fab40014f94296235db77b6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a69550fab40014f94296235db77b6d">&#9670;&nbsp;</a></span>txtVersStructure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void txtVersStructure </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fichierTrain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrains.html">trains</a> *&#160;</td>
+          <td class="paramname"><em>tabTrains</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de calcul du nombre de lignes d'un fichier de racine filename. </p>
+<p>Procédure d'association des éléments d'un objet struct trains à partir d'une ligne d'un fichier.</p>
+<p>ProcÃ©dure d'association des Ã©lÃ©ments d'un objet struct trains Ã  partir d'une ligne d'un fichier.</p>
+<p>int <a class="el" href="Trains_8c.html#ab3ef117bd795b66f070fd52abe39902d" title="Fonction de calcul du nombre de lignes d&#39;un fichier de racine filename. ">nb_line_file(char * filename)</a> </p><dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename,racine</td><td>du fichier, ne peut Ãªtre NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>nb_line, nombre de lignes du fichier de racine filename.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fichierTrain</td><td>Fichier utilisÃ© pour rÃ©cupÃ©rer les Ã©lÃ©ments de l'objet , ne peut Ãªtre NULL. </td></tr>
+    <tr><td class="paramname">tabTrains</td><td>objet de type struct trains dans lequel on associe les Ã©lÃ©ments Ã  la ligne du fichier. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void.</dd></dl>
+<dl class="params"><dt>ParamÃ¨tres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fichierTrain</td><td>Fichier utilisé pour récupérer les éléments de l'objet , ne peut être NULL. </td></tr>
+    <tr><td class="paramname">tabTrains</td><td>objet de type struct trains dans lequel on associe les éléments à la ligne du fichier. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">char</span> ligne[VALUE];</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="Trains_8c.html#a6b2332f67d4ac89f801e4e21af404020">filelinetotxt</a>(ligne, fichierTrain);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//printf(&quot;LIGNE : %s\n&quot;, ligne);</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//const char * REDUC = ACTION_PRIX_STRING[0];</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">//const char * SUPPL = ACTION_PRIX_STRING[1];</span></div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    tabTrains-&gt;<a class="code" href="structtrains.html#a3355e8d130ca641159ed2dea53449f25">num_train</a> = atoi(strtok(ligne, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    strcpy(tabTrains-&gt;<a class="code" href="structtrains.html#a90a9791b7c6a34708f192103ff754295">ville_depart</a>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    strcpy(tabTrains-&gt;<a class="code" href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">ville_arrivee</a>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    strcpy(tabTrains-&gt;<a class="code" href="structtrains.html#a4257d29206232c54585f72ba61eae250">horaire_depart</a>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    strcpy(tabTrains-&gt;<a class="code" href="structtrains.html#a8782f1d7a0e12cda0f631c68d8806b76">horaire_arrivee</a>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    tabTrains-&gt;<a class="code" href="structtrains.html#a6227beccab1036328af482c1c9c03a57">prix_usuel</a> = atof(strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> * actionPrix = strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span>(strcmp(actionPrix, <span class="stringliteral">&quot;REDUC\n&quot;</span>) == 0)</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        tabTrains-&gt;<a class="code" href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">evenement</a> = 0;  <span class="comment">// REDUC</span></div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(strcmp(actionPrix, <span class="stringliteral">&quot;SUPPL\n&quot;</span>) == 0)</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        tabTrains-&gt;<a class="code" href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">evenement</a> = 1;  <span class="comment">// SUPPL</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">else</span></div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        tabTrains-&gt;<a class="code" href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">evenement</a> = 2;  <span class="comment">// VIDE</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div><div class="ttc" id="structtrains_html_a4257d29206232c54585f72ba61eae250"><div class="ttname"><a href="structtrains.html#a4257d29206232c54585f72ba61eae250">trains::horaire_depart</a></div><div class="ttdeci">char horaire_depart[6]</div><div class="ttdef"><b>Definition:</b> Trains.h:34</div></div>
+<div class="ttc" id="Trains_8c_html_a6b2332f67d4ac89f801e4e21af404020"><div class="ttname"><a href="Trains_8c.html#a6b2332f67d4ac89f801e4e21af404020">filelinetotxt</a></div><div class="ttdeci">void filelinetotxt(char *ligne, FILE *fichier_train)</div><div class="ttdoc">ProcÃ©dure transmettant la ligne actuelle du fichier fichier_train Ã  la chaÃ®ne de caractÃ¨res ligne...</div><div class="ttdef"><b>Definition:</b> Trains.c:71</div></div>
+<div class="ttc" id="structtrains_html_a8782f1d7a0e12cda0f631c68d8806b76"><div class="ttname"><a href="structtrains.html#a8782f1d7a0e12cda0f631c68d8806b76">trains::horaire_arrivee</a></div><div class="ttdeci">char horaire_arrivee[6]</div><div class="ttdef"><b>Definition:</b> Trains.h:35</div></div>
+<div class="ttc" id="structtrains_html_a391e1c45efe8d53a2c855be978c597b5"><div class="ttname"><a href="structtrains.html#a391e1c45efe8d53a2c855be978c597b5">trains::ville_arrivee</a></div><div class="ttdeci">char ville_arrivee[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:33</div></div>
+<div class="ttc" id="structtrains_html_a90a9791b7c6a34708f192103ff754295"><div class="ttname"><a href="structtrains.html#a90a9791b7c6a34708f192103ff754295">trains::ville_depart</a></div><div class="ttdeci">char ville_depart[30]</div><div class="ttdef"><b>Definition:</b> Trains.h:32</div></div>
+<div class="ttc" id="structtrains_html_a3355e8d130ca641159ed2dea53449f25"><div class="ttname"><a href="structtrains.html#a3355e8d130ca641159ed2dea53449f25">trains::num_train</a></div><div class="ttdeci">int num_train</div><div class="ttdef"><b>Definition:</b> Trains.h:31</div></div>
+<div class="ttc" id="structtrains_html_af22a66f11db0312fb9426acdbae9eb0d"><div class="ttname"><a href="structtrains.html#af22a66f11db0312fb9426acdbae9eb0d">trains::evenement</a></div><div class="ttdeci">int evenement</div><div class="ttdef"><b>Definition:</b> Trains.h:37</div></div>
+<div class="ttc" id="structtrains_html_a6227beccab1036328af482c1c9c03a57"><div class="ttname"><a href="structtrains.html#a6227beccab1036328af482c1c9c03a57">trains::prix_usuel</a></div><div class="ttdeci">double prix_usuel</div><div class="ttdef"><b>Definition:</b> Trains.h:36</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+GÃ©nÃ©rÃ© par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

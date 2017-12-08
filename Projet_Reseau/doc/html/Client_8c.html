@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet consultation de trains: Référence du fichier Client.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet consultation de trains
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier Client.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Le Client.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;headers/Reseau.h&quot;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/socket.h&gt;</code><br />
+<code>#include &lt;arpa/inet.h&gt;</code><br />
+<code>#include &lt;netinet/in.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;netdb.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a392fb874e547e582e9c66a08a1f23326"><td class="memItemLeft" align="right" valign="top"><a id="a392fb874e547e582e9c66a08a1f23326"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX</b>&#160;&#160;&#160;512</td></tr>
+<tr class="separator:a392fb874e547e582e9c66a08a1f23326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a5eb6852f9f0194d0924508392a06d338"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Client_8c.html#a5eb6852f9f0194d0924508392a06d338">search</a> (char *chaine)</td></tr>
+<tr class="memdesc:a5eb6852f9f0194d0924508392a06d338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche '<br />
+' et remplace par un 0. Utilisé sur la chaine captée par fgets puisque un '<br />
+' est présent dans cette chaine et nous devons l'enlever.  <a href="#a5eb6852f9f0194d0924508392a06d338">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5eb6852f9f0194d0924508392a06d338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4007376eed7e2963a4bc3629847b5bb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Client_8c.html#a4007376eed7e2963a4bc3629847b5bb8">afficherTrains</a> (char *listeTrains)</td></tr>
+<tr class="memdesc:a4007376eed7e2963a4bc3629847b5bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Décompose, met en forme et affiche une liste de trains.  <a href="#a4007376eed7e2963a4bc3629847b5bb8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4007376eed7e2963a4bc3629847b5bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top"><a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char **argv)</td></tr>
+<tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Le Client. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Florian PIGNARD &amp; Jonathan MONBEIG &amp; Mathieu CLUSEL &amp; Louis REYNAUD </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>4 décembre 2017 </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a4007376eed7e2963a4bc3629847b5bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4007376eed7e2963a4bc3629847b5bb8">&#9670;&nbsp;</a></span>afficherTrains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherTrains </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>listeTrains</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Décompose, met en forme et affiche une liste de trains. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">char*</td><td>listeTrains, contient le resultat de la requete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{   </div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">char</span> *trainAAfficher;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">char</span>* saveN;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    trainAAfficher =  strtok_r(listeTrains, <span class="stringliteral">&quot;\n&quot;</span>, &amp;saveN);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    printf(<span class="stringliteral">&quot;\n******************************************************** &quot;</span>);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    printf(<span class="stringliteral">&quot;\n*************** RÉSULTAT DE LA RECHERCHE *************** &quot;</span>);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    printf(<span class="stringliteral">&quot;\n********&quot;</span>);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// BOUCLE TANT QU&#39;IL RESTE UNE LIGNE </span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">while</span>(trainAAfficher != NULL)</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {   </div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">//&quot;trainAAfficher&quot; CONTIENT LA LIGNE</span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        printf(<span class="stringliteral">&quot;\n********\tNuméro du train : %s&quot;</span>,strtok(trainAAfficher, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        printf(<span class="stringliteral">&quot;\n********\tVille de départ : %s&quot;</span>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        printf(<span class="stringliteral">&quot;\n********\tVille d&#39;arrivée : %s&quot;</span>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        printf(<span class="stringliteral">&quot;\n********\tHoraire de départ : %s&quot;</span>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        printf(<span class="stringliteral">&quot;\n********\tHoraire d&#39;arrivée : %s&quot;</span>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        printf(<span class="stringliteral">&quot;\n********\tPrix : %s&quot;</span>,strtok(NULL, <span class="stringliteral">&quot;;&quot;</span>));</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        printf(<span class="stringliteral">&quot;\n******** -----------------------------------------------&quot;</span>);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">//RÉCUPERATION DE LA LIGNE SUIVANTE</span></div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        trainAAfficher =  strtok_r(NULL, <span class="stringliteral">&quot;\n&quot;</span>, &amp;saveN);</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a5eb6852f9f0194d0924508392a06d338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eb6852f9f0194d0924508392a06d338">&#9670;&nbsp;</a></span>search()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void search </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>chaine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recherche '<br />
+' et remplace par un 0. Utilisé sur la chaine captée par fgets puisque un '<br />
+' est présent dans cette chaine et nous devons l'enlever. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">char</td><td>*chaine, c'est dans cette chaine que l'on va recherché un retour à la ligne afin de le remplacer par un 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">char</span> *caractere = strchr(chaine, <span class="charliteral">&#39;\n&#39;</span>);</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span> (caractere)</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        *caractere = 0;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>
