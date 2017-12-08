@@ -92,13 +92,12 @@ int main(int argc, char **argv)
 	//TEST DE LA CONNEXION AU SERVEUR
 	nbLus = read(numSocket, message, MAX);
 	message[nbLus+1] = 0;
-<<<<<<< HEAD
+
 	printf("%s", message);
 	//write(1, message, strlen(message));
 	
 	//viderChaine(message, strlen(message)); // Vide le tableau
-=======
->>>>>>> 43dd9b5792b6a961d803f9ed02351e8c421a4253
+
 	
 	//BOUCLE TANT QUE L'UTILISATEUR VEUT CONSULTER DES TRAINS
 	do{
